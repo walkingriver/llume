@@ -99,3 +99,11 @@ Example:
 ```
 
 Generate a NEW random hash each time you update a page. This achieves Angular-style cache busting without build tools.
+
+## Testing (Optional)
+
+Testing is NOT mandated for generated pages. The zero-build philosophy applies to output, not tooling.
+
+- **llasm.js runtime** has unit tests: `npm test`
+- **Generated pages** - test if user requests, otherwise not required
+- If user wants tests, let them choose their preferred framework

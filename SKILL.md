@@ -319,6 +319,25 @@ Generate a NEW random hash each time you create or update a page. This achieves 
 - No external scripts, no package.json, no build step
 - Cache is busted naturally when pages are regenerated
 
+## Testing (Optional)
+
+LLasM does not mandate testing for generated pages. However, if the user requests tests or you want to validate functionality:
+
+### Runtime Tests
+The `llasm.js` runtime has unit tests using Vitest:
+```bash
+npm test        # Run once
+npm test:watch  # Watch mode
+```
+
+### Generated Page Testing
+If testing generated pages is desired, consider:
+- **Manual browser testing** - Open in browser, check DevTools console
+- **E2E tests** - User's choice of framework (Playwright, Cypress, etc.)
+- **Validation** - Ensure manifest JSON is valid, required attributes present
+
+Testing is NOT part of the zero-build philosophy for generated pages. It remains the user's choice.
+
 ## File Output
 
 When generating a page, also copy `llasm.js` alongside it:
