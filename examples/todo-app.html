@@ -19,7 +19,7 @@
 </main>
 <script type="application/llume+json" id="manifest">{"v":1,"r":{"s":{"items":[],"count":0}},"l":{"en":{"ti":"Todo App","its":"items"}},"t":{"--m-p":"#10b981"}}</script>
 <script type="module">
-import{l}from"./llume.js";
+import{l}from"../llume.js";
 document.getElementById('af').addEventListener('submit',e=>{e.preventDefault();const t=l.q('[name=task]'),s=l.s();if(!t.value.trim())return;l.u({items:[...s.items,{id:Date.now(),tx:t.value}],count:s.items.length+1});t.value='';t.focus();});
 window._del=(btn)=>{const li=btn.closest('li'),s=l.s(),id=parseInt(li.dataset.mK);l.u({items:s.items.filter(i=>i.id!==id),count:s.items.length-1});};
 </script>

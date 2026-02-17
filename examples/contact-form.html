@@ -25,7 +25,7 @@
 </main>
 <script type="application/llume+json" id="manifest">{"v":1,"r":{"s":{"msg":""}},"l":{"en":{"ti":"Contact Us","ln":"Name","le":"Email","ls":"Subject","lm":"Message","bt":"Send Message"}},"t":{"--m-p":"#0066ff"}}</script>
 <script type="module">
-import{l}from"./llume.js";
+import{l}from"../llume.js";
 document.getElementById('cf').addEventListener('submit',e=>{e.preventDefault();const r=l.vf(e.target);if(!r.v){l.u({msg:'<div class="p3 r b4 cw">Please fix errors.</div>'});return;}l.u({msg:'<div class="p3 r b3 cw">Message sent!</div>'});e.target.reset();});
 </script>
 </body>

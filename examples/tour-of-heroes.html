@@ -56,7 +56,7 @@
 
 <script type="application/llume+json" id="manifest">{"v":1,"r":{"s":{"heroes":[{"id":12,"name":"Dr. Nice"},{"id":13,"name":"Bombasto"},{"id":14,"name":"Celeritas"},{"id":15,"name":"Magneta"},{"id":16,"name":"RubberMan"},{"id":17,"name":"Dynama"},{"id":18,"name":"Dr. IQ"},{"id":19,"name":"Magma"},{"id":20,"name":"Tornado"}],"topHeroes":[],"selectedHero":null,"selectedId":null,"editHero":null,"searchTerm":"","searchResults":[]}},"l":{"en":{"title":"Tour of Heroes","topHeroes":"Top Heroes","myHeroes":"My Heroes","heroSearch":"Hero Search"}},"t":{"--m-p":"#369","--m-s":"#555"}}</script>
 <script type="module">
-import{l}from"./llume.js";
+import{l}from"../llume.js";
 const initTop=()=>{const s=l.s();l.u({topHeroes:s.heroes.slice(0,4)});};
 window._search=(term)=>{const s=l.s();if(!term.trim()){l.u({searchResults:[]});return;}l.u({searchResults:s.heroes.filter(h=>h.name.toLowerCase().includes(term.toLowerCase()))});};
 window._select=(li)=>{const id=parseInt(li.dataset.mK),s=l.s(),hero=s.heroes.find(h=>h.id===id);l.u({selectedHero:hero,selectedId:id});const vl=l.q('#view-link');if(vl)vl.href=`#/detail/${id}`;};

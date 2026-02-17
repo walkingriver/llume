@@ -36,7 +36,7 @@
 </div>
 <script type="application/llume+json" id="manifest">{"v":1,"r":{"s":{"msg":"","items":[{"id":"1","nm":"Item A"},{"id":"2","nm":"Item B"}]}},"l":{"en":{"ti":"LLuMe Demo","we":"Welcome to LLuMe"},"es":{"ti":"Demo LLuMe","we":"Bienvenido a LLuMe"}},"t":{"--m-p":"#0066ff","--m-s":"#6c757d"}}</script>
 <script type="module">
-import{l}from"./llume.js";
+import{l}from"../llume.js";
 l.h({f1:async(e,s,L)=>{e.preventDefault();const r=L.vf(e.target);if(!r.v)return;L.u({msg:"OK"});},f2:(e,s,L)=>{L.r(L.s().ln==="es"?"en":"es");}});
 document.getElementById('fm').addEventListener('submit',e=>{e.preventDefault();const r=l.vf(e.target);l.u({msg:r.v?"OK":"Fix errors"});});
 </script>
