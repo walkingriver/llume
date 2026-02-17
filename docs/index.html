@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="LLasM: LLM Assembly Language - The web framework built exclusively for AI coding agents. Zero build. Pure ESM. One way to do everything.">
+  <meta name="theme-color" content="#0066ff">
+  <title>LLasM - LLM Assembly Language</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body class="bg">
+  <!-- Header -->
+  <header class="f fb fi px3 py2 stk t0 l0 r0 z3 bw sh">
+    <a href="#" class="t5 tb c1" style="text-decoration:none">⚡ LLasM</a>
+    <nav class="f g3 fi">
+      <a href="#features" class="cg" style="text-decoration:none">Features</a>
+      <a href="#how" class="cg" style="text-decoration:none">How It Works</a>
+      <a href="#examples" class="cg" style="text-decoration:none">Examples</a>
+      <a href="https://github.com/walkingriver/llasm" class="cg" style="text-decoration:none">GitHub</a>
+      <button data-m-enhance="darkmode secondary" class="px2 py1 r t2">Theme</button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <main class="xw4 mxa px3 py5">
+    <section class="tc py5">
+      <h1 class="t7 tb c1" style="font-size:3.5rem;line-height:1.1">
+        The Web Framework for<br><span class="cg">AI Coding Agents</span>
+      </h1>
+      <p class="t4 cg mxa py3" style="max-width:600px">
+        LLasM is the first framework whose only intended user is an LLM. 
+        Humans don't read it. Humans don't write it. Humans don't debug it.
+      </p>
+      <div class="f fj g2 fw py3">
+        <code class="p2 bg r t3" style="font-family:monospace">npx skills add walkingriver/llasm</code>
+      </div>
+      <p class="t2 cg">Works with Cursor, Claude Code, Copilot, Windsurf, and more</p>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="py4">
+      <div class="g gc3 g3 sm:gc1">
+        <div class="p3 bg r">
+          <div class="t5 tb c1">Zero Build</div>
+          <p class="cg py2">No npm. No webpack. No Vite. Pure ESM that runs directly in browsers. The "build step" is the LLM generating HTML.</p>
+        </div>
+        <div class="p3 bg r">
+          <div class="t5 tb c1">One Way</div>
+          <p class="cg py2">No flexibility. No choices. No escape hatches. There is exactly one way to do most things. Rigidity eliminates hallucination.</p>
+        </div>
+        <div class="p3 bg r">
+          <div class="t5 tb c1">~8KB Runtime</div>
+          <p class="cg py2">Reactivity, routing, i18n, theming, persistence, toasts, modals, tabs, accordions—all in a runtime smaller than most hero images.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py5">
+      <h2 class="t6 tb tc c1 py3">What It Covers</h2>
+      <p class="tc cg py2">LLasM handles the "hard 80%" of web UI</p>
+      
+      <div class="g gc2 g2 py3 sm:gc1">
+        <div class="p3 bg r f g2 fi">
+          <span class="t4">🎛️</span>
+          <div><span class="tb">Event Binding</span><br><code class="t1 cg">data-m-on="click:save"</code></div>
+        </div>
+        <div class="p3 bg r f g2 fi">
+          <span class="t4">🔔</span>
+          <div><span class="tb">Toast Notifications</span><br><code class="t1 cg">L.t('Saved!', 'ok')</code></div>
+        </div>
+        <div class="p3 bg r f g2 fi">
+          <span class="t4">💾</span>
+          <div><span class="tb">LocalStorage Persistence</span><br><code class="t1 cg">"persist":["items"]</code></div>
+        </div>
+        <div class="p3 bg r f g2 fi">
+          <span class="t4">🌙</span>
+          <div><span class="tb">Dark Mode</span><br><code class="t1 cg">data-m-enhance="darkmode"</code></div>
+        </div>
+        <div class="p3 bg r f g2 fi">
+          <span class="t4">🌐</span>
+          <div><span class="tb">i18n</span><br><code class="t1 cg">data-m-tx="key"</code></div>
+        </div>
+        <div class="p3 bg r f g2 fi">
+          <span class="t4">🎨</span>
+          <div><span class="tb">Theming</span><br><code class="t1 cg">{"--m-p":"#0066ff"}</code></div>
+        </div>
+        <div class="p3 bg r f g2 fi">
+          <span class="t4">📋</span>
+          <div><span class="tb">Modals & Tabs</span><br><code class="t1 cg">data-m-enhance="modal"</code></div>
+        </div>
+        <div class="p3 bg r f g2 fi">
+          <span class="t4">📡</span>
+          <div><span class="tb">Offline Detection</span><br><code class="t1 cg">data-m-if="_offline"</code></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how" class="py5">
+      <h2 class="t6 tb tc c1 py3">How It Works</h2>
+      
+      <div class="py3">
+        <div class="f g3 fi py3 sm:fc">
+          <div class="p3 b1 cw r tc" style="min-width:48px">1</div>
+          <div>
+            <div class="tb t4">Install the Skill</div>
+            <p class="cg py1">Run <code>npx skills add walkingriver/llasm</code> to teach your AI agent the LLasM instruction set.</p>
+          </div>
+        </div>
+        <div class="f g3 fi py3 sm:fc">
+          <div class="p3 b1 cw r tc" style="min-width:48px">2</div>
+          <div>
+            <div class="tb t4">Ask for What You Want</div>
+            <p class="cg py1">"Build me a todo app with dark mode and persistence." The agent reads the skill and generates valid output.</p>
+          </div>
+        </div>
+        <div class="f g3 fi py3 sm:fc">
+          <div class="p3 b1 cw r tc" style="min-width:48px">3</div>
+          <div>
+            <div class="tb t4">Open in Browser</div>
+            <p class="cg py1">You get a complete HTML file + llasm.js. No npm install. No build step. Just open it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Example -->
+    <section id="examples" class="py5">
+      <h2 class="t6 tb tc c1 py3">The Output Format</h2>
+      <p class="tc cg py2">Every LLasM page has exactly three parts</p>
+      
+      <div class="bg r p3" style="overflow-x:auto">
+        <pre class="t2" style="margin:0;font-family:monospace;line-height:1.6"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;body class="p3"&gt;
+  <span class="cg">&lt;!-- 1. STATIC HTML --&gt;</span>
+  &lt;h1 data-m-tx="title" class="t6 tb c1"&gt;&lt;/h1&gt;
+  &lt;button data-m-on="click:save"&gt;Save&lt;/button&gt;
+  
+  <span class="cg">&lt;!-- 2. MANIFEST --&gt;</span>
+  &lt;script type="application/llasm+json"&gt;
+    {"v":1,"r":{"s":{"count":0}},"l":{"en":{"title":"Hello"}}}
+  &lt;/script&gt;
+  
+  <span class="cg">&lt;!-- 3. HANDLERS --&gt;</span>
+  &lt;script type="module"&gt;
+    import{l}from"./llasm.js";
+    l.h({save:(e,s,L)=&gt;L.t('Saved!','ok')});
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- Live Demo -->
+    <section class="py5">
+      <h2 class="t6 tb tc c1 py3">Live Demo</h2>
+      <p class="tc cg py2">This entire site is built with LLasM</p>
+      
+      <div class="bg r p4 tc">
+        <p class="py2">Current count: <span class="tb t5 c1" data-m-bind="count">0</span></p>
+        <div class="f fj g2">
+          <button data-m-on="click:dec" data-m-enhance="secondary ripple" class="px3 py2 r">−</button>
+          <button data-m-on="click:inc" data-m-enhance="primary ripple" class="px3 py2 r">+</button>
+        </div>
+        <p class="t2 cg py2">Click the buttons — state is reactive</p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py5 tc">
+      <h2 class="t6 tb c1 py2">Ready to Try It?</h2>
+      <p class="cg py2">Install the skill and ask your AI agent to build something</p>
+      <code class="db p3 bg r t3 mxa" style="font-family:monospace;max-width:400px">npx skills add walkingriver/llasm</code>
+      <div class="f fj g3 py4">
+        <a href="https://github.com/walkingriver/llasm" class="px4 py2 b1 cw r tb" style="text-decoration:none">View on GitHub</a>
+        <a href="https://github.com/walkingriver/llasm/tree/main/examples" class="px4 py2 bd r tb" style="text-decoration:none">See Examples</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="tc py4 cg t2 bd" style="border-left:0;border-right:0;border-bottom:0">
+    <p>LLasM — LLM Assembly Language</p>
+    <p class="py1">Built for AI. By a human who got tired of reviewing inconsistent output.</p>
+    <p class="py2">
+      <a href="https://github.com/walkingriver/llasm" class="cg">GitHub</a> · 
+      <a href="https://skills.sh" class="cg">skills.sh</a>
+    </p>
+  </footer>
+
+  <!-- Manifest -->
+  <script type="application/llasm+json" id="manifest">{"v":1,"r":{"s":{"count":0}},"l":{"en":{}},"t":{"--m-p":"#0066ff","--m-s":"#6c757d"}}</script>
+
+  <!-- Handlers -->
+  <script type="module">
+    import{l}from"./llasm.js";
+    l.h({
+      inc:(e,s,L)=>L.u({count:s.count+1}),
+      dec:(e,s,L)=>L.u({count:Math.max(0,s.count-1)})
+    });
+  </script>
+</body>
+</html>
