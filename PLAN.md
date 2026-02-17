@@ -57,17 +57,64 @@
 | 19 | Multi-step forms | ⬜ | `data-m-enhance="wizard"` |
 | 20 | Date formatting pipe | ⬜ | `data-m-bind="date|date:short"` |
 
-### Tier 5: Future Consideration
+### Tier 5: Server-Side Skills ✅ COMPLETE
 | # | Feature | Status | Notes |
 |---|---------|--------|-------|
-| 21 | SSR support | ⬜ | Node-based pre-rendering |
-| 22 | Hydration markers | ⬜ | Partial hydration optimization |
-| 23 | Web components bridge | ⬜ | Use existing WC libraries |
-| 24 | Analytics hook | ⬜ | `l.track(event, data)` |
+| 21 | SSR support | ✅ | `SKILL-SSR.md` - file-based routing, state injection |
+| 22 | REST API support | ✅ | `SKILL-API.md` - native Node.js http module |
+| 23 | ESM package support | ✅ | Recommended packages (better-sqlite3, zod, etc.) |
+
+### Tier 6: Future Consideration
+| # | Feature | Status | Notes |
+|---|---------|--------|-------|
+| 24 | Hydration markers | ⬜ | Partial hydration optimization |
+| 25 | Web components bridge | ⬜ | Use existing WC libraries |
+| 26 | Analytics hook | ⬜ | `l.track(event, data)` |
 
 ---
 
 ## Implementation Log
+
+### Session: 2026-02-17 (continued)
+
+**v1.3.0 - Server-Side Skills**
+
+Added full-stack capabilities with two new skills:
+
+REST API (`SKILL-API.md`):
+- ✅ Native Node.js http module (no Express/Fastify)
+- ✅ Single-file `server.js` output
+- ✅ Route pattern matching with params
+- ✅ CORS, JSON parsing, validation patterns
+- ✅ File-based JSON persistence examples
+- ✅ Recommended ESM packages (better-sqlite3, zod, jose, etc.)
+
+SSR (`SKILL-SSR.md`):
+- ✅ File-based routing (each HTML file = route)
+- ✅ Selective SSR (only pages with handlers get state injection)
+- ✅ Mixed page types (static, static+client, SSR, SSR+hydration)
+- ✅ State injection into LLasM manifest
+- ✅ SEO meta tag injection patterns
+
+Documentation:
+- ✅ `reference/api-patterns.md` - detailed API patterns
+- ✅ `reference/ssr-patterns.md` - detailed SSR patterns
+- ✅ Updated `AGENTS.md` with all three skills
+- ✅ Updated `README.md` with server-side capabilities
+- ✅ Added server section to docs site
+
+Examples:
+- ✅ `docs/examples/api-basic.js` - in-memory CRUD
+- ✅ `docs/examples/api-with-db.js` - file persistence
+- ✅ `docs/examples/ssr-basic.js` - file-based routing demo
+- ✅ `docs/examples/ssr-with-api.js` - combined SSR + API
+
+Philosophy clarification:
+- "No build, not no packages" - ESM packages allowed
+- Framework-free (no Express/Fastify) but not dependency-free
+- `npm install` → `node server.js` is valid (no build step between)
+
+---
 
 ### Session: 2026-02-17
 
