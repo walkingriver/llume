@@ -58,6 +58,7 @@ Yes, build tools can obfuscate and minify human-readable code after the fact. Bu
 
 Every web framework in existence was designed for human developers:
 
+- **Angular** wants you to master modules, services, dependency injection, RxJS, and a CLI with 47 flags
 - **React** assumes you'll read the docs, understand JSX, and debug component lifecycles
 - **Vue** expects you to learn its template syntax and reactive patterns  
 - **Tailwind** requires you to memorize hundreds of utility classes
