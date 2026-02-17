@@ -87,12 +87,15 @@ These rules prevent common Lighthouse audit failures:
 
 ## Versioning & Cache Busting
 
-When making changes to the docs site or llasm.js:
+The LLM IS the build tool. When generating or updating any page:
 
-1. **Bump VERSION.json** - Increment `build`, update `date` and `hash`
-2. **Update footer** - Change `data-m-version` element to match build number
-3. **Update cache-bust** - Change `?v=N` query string on `llasm.js` import
+1. **Footer version** - Include `<p class="t1 o5" data-m-version>Built YYYY-MM-DD</p>` with today's date
+2. **Cache-bust import** - Use `import{l}from"./llasm.js?v=YYYYMMDD";` with today's date
 
-Example: `import{l}from"./llasm.js?v=2";`
+Example for today (2026-02-17):
+```html
+<p data-m-version>Built 2026-02-17</p>
+<script type="module">import{l}from"./llasm.js?v=20260217";</script>
+```
 
-This ensures browsers fetch the latest version after deployments.
+No external build tools. The LLM embeds the timestamp during generation.

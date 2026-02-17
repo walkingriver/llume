@@ -296,32 +296,29 @@ For production pages, include critical CSS inline in `<head>` to prevent CLS:
 
 ## Versioning & Cache Busting
 
-### VERSION.json
-Track builds with a simple JSON file at project root:
-```json
-{
-  "build": 1,
-  "date": "2026-02-17T12:00:00Z",
-  "hash": "abc1234"
-}
+When generating or updating any LLasM page, the LLM automatically embeds version info:
+
+### Footer Version (REQUIRED)
+Every page MUST include a version line in the footer with the current date:
+```html
+<p class="t1 o5" data-m-version>Built YYYY-MM-DD</p>
 ```
+Use today's actual date when generating. This serves as the "build timestamp" - no external build tool needed.
 
-### Version Bumping Workflow
-When deploying changes:
-1. Increment `build` number in `VERSION.json`
-2. Update `date` to current ISO timestamp
-3. Update `hash` to current git commit hash (first 7 chars)
-4. Update footer `data-m-version` element: `Build {n} · {date}`
-5. Update `llasm.js` import query string: `./llasm.js?v={build}`
-
-### Cache Busting
-Use query string versioning on the llasm.js import:
+### Cache Busting (REQUIRED)
+Use a timestamp-based query string on the llasm.js import:
 ```html
 <script type="module">
-  import{l}from"./llasm.js?v=1";
+  import{l}from"./llasm.js?v=YYYYMMDD";
 </script>
 ```
-Increment the version number with each build to bust browser cache.
+Use today's date as the version. When updating a page, always update this to the current date.
+
+### Why This Works
+- The LLM IS the build tool - it knows today's date
+- No external scripts, no package.json, no build step
+- Each generation/update automatically gets a fresh timestamp
+- Cache is busted naturally when pages are regenerated
 
 ## File Output
 
