@@ -40,9 +40,10 @@ const df=(el,arr,tpl,key)=>{
 
 // i18n text resolution
 const tx=(k)=>{
-  if(!k||k[0]!=='@')return k;
+  if(!k)return k;
+  const key=k[0]==='@'?k.slice(1):k;
   const m=_l[_ln]||_l.en||{};
-  return m[k]??k;
+  return m[key]??k;
 };
 
 // Apply i18n to element
