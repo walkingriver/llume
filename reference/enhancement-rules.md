@@ -121,6 +121,48 @@ Creates progress bar.
 <div data-m-enhance="progress" data-m-max="100" data-m-value="42"></div>
 ```
 
+## Conditional Rendering
+
+### data-m-if
+Shows/hides element based on state truthiness.
+```html
+<div data-m-if="showDetails">Details here</div>
+<div data-m-if="!loading">Content loaded</div>
+```
+
+### data-m-class
+Adds CSS class conditionally.
+```html
+<!-- Simple truthy check -->
+<li data-m-class="active:isSelected">Item</li>
+
+<!-- Equality check -->
+<li data-m-class="selected:currentId==itemId">Item</li>
+```
+
+## Text Transforms (Pipes)
+
+Use with `data-m-bind`:
+```html
+<span data-m-bind="name|upper"></span>  <!-- UPPERCASE -->
+<span data-m-bind="name|lower"></span>  <!-- lowercase -->
+<span data-m-bind="name|title"></span>  <!-- Title Case -->
+```
+
+## Route Parameters
+
+Use `:param` syntax in routes:
+```html
+<section data-m-route="/hero/:id">
+  <span data-m-bind="id"></span>  <!-- Binds to route param -->
+</section>
+```
+
+Access in handlers via `L.p()`:
+```javascript
+const params = L.p(); // { id: "123" }
+```
+
 ## ARIA Automation
 
 The runtime automatically adds appropriate ARIA attributes:

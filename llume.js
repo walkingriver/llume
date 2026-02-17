@@ -1,10 +1,10 @@
 /**
- * LLuMe Runtime v1.0.0
+ * LLuMe Runtime v1.1.0
  * AI-native web framework - sole user is another LLM
  * Target: ≤9KB gzipped
  */
 const D=document,W=window,Q=(s,c=D)=>c.querySelector(s),A=(s,c=D)=>c.querySelectorAll(s);
-let _s={},_l={},_t={},_ln='en',_h={},_m=null,_p=null;
+let _s={},_l={},_t={},_ln='en',_h={},_m=null,_p={},_rp={};
 
 // Proxy-based reactive state
 const px=(o,cb)=>{
@@ -309,21 +309,102 @@ const fc=async(url,opts={},rt=3)=>{
   }
 };
 
-// Hash routing
+// Text transforms (pipes)
+const PP={
+  upper:s=>String(s).toUpperCase(),
+  lower:s=>String(s).toLowerCase(),
+  title:s=>String(s).replace(/\b\w/g,c=>c.toUpperCase()),
+  trim:s=>String(s).trim()
+};
+const ap=(v,p)=>{if(!p)return v;const pn=p.split('|').map(x=>x.trim());return pn.reduce((a,n)=>PP[n]?PP[n](a):a,v);};
+
+// Hash routing with params
 const rt=()=>{
   const h=location.hash.slice(1)||'/';
+  _rp={};
   A('[data-m-route]').forEach(s=>{
     const m=s.dataset.mRoute;
-    s.hidden=m!==h;
-    s.setAttribute('aria-hidden',String(m!==h));
+    // Check for param routes like /hero/:id
+    if(m.includes(':')){
+      const mParts=m.split('/');
+      const hParts=h.split('/');
+      if(mParts.length===hParts.length){
+        let match=true;
+        const params={};
+        for(let i=0;i<mParts.length;i++){
+          if(mParts[i].startsWith(':')){
+            params[mParts[i].slice(1)]=hParts[i];
+          }else if(mParts[i]!==hParts[i]){
+            match=false;break;
+          }
+        }
+        if(match){
+          _rp=params;
+          s.hidden=false;
+          s.setAttribute('aria-hidden','false');
+        }else{
+          s.hidden=true;
+          s.setAttribute('aria-hidden','true');
+        }
+      }else{
+        s.hidden=true;
+        s.setAttribute('aria-hidden','true');
+      }
+    }else{
+      s.hidden=m!==h;
+      s.setAttribute('aria-hidden',String(m!==h));
+    }
+  });
+  bc();
+};
+
+// Conditional rendering (data-m-if)
+const ci=()=>{
+  A('[data-m-if]').forEach(el=>{
+    const k=el.dataset.mIf;
+    const neg=k.startsWith('!');
+    const key=neg?k.slice(1):k;
+    const v=_s[key];
+    const show=neg?!v:!!v;
+    el.hidden=!show;
+    el.setAttribute('aria-hidden',String(!show));
   });
 };
+
+// Conditional classes (data-m-class)
+const cc=()=>{
+  A('[data-m-class]').forEach(el=>{
+    const rules=el.dataset.mClass.split(',');
+    rules.forEach(rule=>{
+      const[cls,cond]=rule.split(':').map(x=>x.trim());
+      if(!cls||!cond)return;
+      // Support simple equality: selected:selectedId==id
+      const eqMatch=cond.match(/^(\w+)==(\w+)$/);
+      if(eqMatch){
+        const[,left,right]=eqMatch;
+        const lv=_s[left]??_rp[left];
+        const rv=_s[right]??_rp[right]??right;
+        if(String(lv)===String(rv))el.classList.add(cls);
+        else el.classList.remove(cls);
+      }else{
+        // Simple truthy check
+        const v=_s[cond];
+        if(v)el.classList.add(cls);
+        else el.classList.remove(cls);
+      }
+    });
+  });
+};
+
+// Combined binding update
+const bc=()=>{ci();cc();bd();};
 
 // Bind state to DOM
 const bd=()=>{
   A('[data-m-bind]').forEach(el=>{
-    const k=el.dataset.mBind;
-    const v=_s[k];
+    const raw=el.dataset.mBind;
+    const[k,pipe]=raw.includes('|')?raw.split('|').map(x=>x.trim()):[raw,null];
+    const v=_s[k]??_rp[k];
     if(Array.isArray(v)){
       const tplId=el.dataset.mTpl;
       const tpl=tplId?Q(`#${tplId}`):Q('template',el);
@@ -332,7 +413,7 @@ const bd=()=>{
       if(el.type==='checkbox')el.checked=!!v;
       else el.value=v??'';
     }else{
-      el.textContent=v??'';
+      el.textContent=ap(v??'',pipe);
     }
   });
 };
@@ -354,20 +435,21 @@ const mn=(m)=>{
   _m=m;
   if(m.l)_l=m.l;
   if(m.t){_t=m.t;cs();}
-  if(m.r?.s)_s=px({..._s,...m.r.s},bd);
+  if(m.r?.s)_s=px({..._s,...m.r.s},bc);
   ai();
   A('[data-m-enhance]').forEach(ae);
   A('[data-m-bind]').forEach(el=>{
     const inp=el.tagName==='INPUT'||el.tagName==='SELECT'||el.tagName==='TEXTAREA';
     if(inp){
       el.addEventListener('input',()=>{
-        const k=el.dataset.mBind;
+        const raw=el.dataset.mBind;
+        const k=raw.includes('|')?raw.split('|')[0].trim():raw;
         if(el.type==='checkbox')_s[k]=el.checked;
         else _s[k]=el.value;
       });
     }
   });
-  bd();
+  bc();
   W.addEventListener('hashchange',rt);
   rt();
 };
@@ -392,7 +474,7 @@ const ra=()=>{
 // Public API
 const l={
   m:(m)=>{ra();if(m)mn(m);else{const pm2=pm();if(pm2)mn(pm2);}},
-  u:(p)=>{Object.assign(_s,p);bd();},
+  u:(p)=>{Object.assign(_s,p);bc();},
   f:fc,
   v:vs,
   vf:vf,
@@ -400,6 +482,8 @@ const l={
   q:Q,
   qa:A,
   s:()=>JSON.parse(JSON.stringify(_s)),
+  p:()=>({..._rp}),
+  nav:(h)=>{location.hash=h;},
   h:(hm)=>{Object.assign(_h,hm);
     A('[data-m-e]').forEach(el=>{
       try{const em=JSON.parse(el.dataset.mE.replace(/'/g,'"'));ev(el,em);}catch{}
@@ -419,7 +503,7 @@ const l={
     }
   },
   _s:()=>_s,
-  _p:()=>_p
+  _rp:()=>_rp
 };
 
 // Auto-init on DOMContentLoaded

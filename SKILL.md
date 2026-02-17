@@ -52,11 +52,28 @@ Every LLuMe page has exactly three parts:
 |-----------|---------|---------|
 | `data-m-tx` | i18n text key | `data-m-tx="title"` |
 | `data-m-bind` | Two-way state binding | `data-m-bind="count"` |
+| `data-m-bind` | With pipe transform | `data-m-bind="name\|upper"` |
 | `data-m-enhance` | Enhancement flags | `data-m-enhance="primary ripple"` |
 | `data-m-route` | Hash routing section | `data-m-route="/about"` |
+| `data-m-route` | With params | `data-m-route="/hero/:id"` |
+| `data-m-if` | Conditional rendering | `data-m-if="showDetail"` |
+| `data-m-if` | Negated condition | `data-m-if="!loading"` |
+| `data-m-class` | Conditional CSS class | `data-m-class="selected:isActive"` |
+| `data-m-class` | Equality check | `data-m-class="sel:selectedId==id"` |
 | `data-m-tpl` | Template ID for lists | `data-m-tpl="item-tpl"` |
 | `data-m-key` | Key field for list diffing | `data-m-key="id"` |
 | `data-m-f` | Field name in template | `data-m-f="name"` |
+
+## Pipes (Transforms)
+
+Use with `data-m-bind="key|pipe"`:
+
+| Pipe | Effect |
+|------|--------|
+| `upper` | UPPERCASE |
+| `lower` | lowercase |
+| `title` | Title Case |
+| `trim` | Remove whitespace |
 
 ## Enhancement Flags
 
@@ -108,6 +125,8 @@ Handlers receive `(event, state, L)` where `L` is the runtime:
 | `L.u(patch)` | Update state |
 | `L.r(locale)` | Switch locale |
 | `L.s()` | Get state snapshot |
+| `L.p()` | Get route params (e.g., `{id:"123"}`) |
+| `L.nav(hash)` | Navigate to hash route |
 | `L.q(sel)` | Query element |
 | `L.vf(form)` | Validate form → `{v:bool, e:[]}` |
 | `L.f(url,opts)` | Fetch with retry |

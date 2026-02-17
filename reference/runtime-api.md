@@ -88,6 +88,21 @@ Fetch with automatic retry (default 3 attempts).
 const data = await L.f("/api/items", { method: "GET" });
 ```
 
+### L.p()
+Get route parameters from parameterized routes like `/hero/:id`.
+
+```javascript
+// URL: #/hero/123
+const params = L.p(); // { id: "123" }
+```
+
+### L.nav(hash)
+Navigate to a hash route programmatically.
+
+```javascript
+L.nav("/detail/123");
+```
+
 ## Event Binding in Manifest
 
 Events are bound via the `e` key in manifest elements:
