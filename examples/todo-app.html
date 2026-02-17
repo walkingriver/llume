@@ -8,20 +8,31 @@
 </head>
 <body class="p4">
 <main class="xw2 mxa f fc g3">
+<header class="f fb fi">
 <h1 class="t6 c1 tb" data-m-tx="ti"></h1>
-<form id="af" class="f g2">
-<input type="text" name="task" data-m-enhance="autofocus" placeholder="What needs done?" required minlength="1" class="fg">
+<button data-m-enhance="darkmode" class="bg p2 r cp">Dark</button>
+</header>
+<form data-m-on="submit:add" class="f g2">
+<input type="text" name="task" data-m-bind="newTask" data-m-enhance="autofocus" placeholder="What needs done?" required minlength="1" class="fg">
 <button type="submit" data-m-enhance="primary ripple">Add</button>
 </form>
-<ul data-m-bind="items" data-m-tpl="it" data-m-key="id" class="f fc g1"></ul>
-<template id="it"><li class="f fi fb p2 bg r"><span data-m-f="tx" class="fg"></span><button data-m-enhance="secondary" onclick="window._del(this)">X</button></li></template>
-<p class="cg"><span class="tb" data-m-bind="count"></span> <span data-m-tx="its"></span></p>
+<div data-m-if="items.length==0" class="p4 bg r tc">
+<p class="cg">No todos yet. Add one above!</p>
+</div>
+<ul data-m-if="items.length>0" data-m-bind="items" data-m-tpl="it" data-m-key="id" class="f fc g1"></ul>
+<template id="it"><li class="f fi g2 p2 bg r tr"><input type="checkbox" data-m-f="done" data-m-on="change:toggle"><span data-m-f="tx" class="fg"></span><button data-m-on="click:del" data-m-enhance="secondary" class="t2 py1 px2">X</button></li></template>
+<p data-m-if="items.length>0" class="cg"><span class="tb" data-m-bind="remaining"></span> <span data-m-tx="rem"></span></p>
 </main>
-<script type="application/llume+json" id="manifest">{"v":1,"r":{"s":{"items":[],"count":0}},"l":{"en":{"ti":"Todo App","its":"items"}},"t":{"--m-p":"#10b981"}}</script>
+<script type="application/llume+json" id="manifest">{"v":1,"r":{"s":{"items":[],"newTask":"","remaining":0}},"persist":["items"],"l":{"en":{"ti":"Todo App","rem":"remaining"}},"t":{"--m-p":"#10b981"}}</script>
 <script type="module">
 import{l}from"../llume.js";
-document.getElementById('af').addEventListener('submit',e=>{e.preventDefault();const t=l.q('[name=task]'),s=l.s();if(!t.value.trim())return;l.u({items:[...s.items,{id:Date.now(),tx:t.value}],count:s.items.length+1});t.value='';t.focus();});
-window._del=(btn)=>{const li=btn.closest('li'),s=l.s(),id=parseInt(li.dataset.mK);l.u({items:s.items.filter(i=>i.id!==id),count:s.items.length-1});};
+const upd=()=>{const s=l.s();l.u({remaining:s.items.filter(i=>!i.done).length});};
+l.h({
+  add:(e)=>{const s=l.s();if(!s.newTask.trim())return;l.u({items:[...s.items,{id:Date.now(),tx:s.newTask,done:false}],newTask:''});upd();l.t('Added!','ok',1500);},
+  del:(e,s,L,el)=>{const id=parseInt(el.closest('li').dataset.mK);l.u({items:s.items.filter(i=>i.id!==id)});upd();},
+  toggle:(e,s,L,el)=>{const id=parseInt(el.closest('li').dataset.mK);l.u({items:s.items.map(i=>i.id===id?{...i,done:el.checked}:i)});upd();}
+});
+upd();
 </script>
 </body>
 </html>

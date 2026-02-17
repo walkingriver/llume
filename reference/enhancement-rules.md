@@ -121,13 +121,65 @@ Creates progress bar.
 <div data-m-enhance="progress" data-m-max="100" data-m-value="42"></div>
 ```
 
+### toast
+Creates toast notification container.
+```html
+<div data-m-enhance="toast"></div>
+```
+Usually not needed - runtime auto-creates toast container when `l.t()` is called.
+
+### darkmode
+Toggles dark mode on click and persists preference.
+```html
+<button data-m-enhance="darkmode">Toggle Dark Mode</button>
+```
+- Adds/removes `dark` class on `<body>`
+- Persists to localStorage
+- Loads saved preference on page load
+
+## Event Binding
+
+### data-m-on
+Bind events directly in HTML (preferred over onclick):
+```html
+<!-- Single event -->
+<button data-m-on="click:save">Save</button>
+
+<!-- Multiple events -->
+<input data-m-on="input:typing,blur:validate">
+
+<!-- Form submit -->
+<form data-m-on="submit:send">
+```
+
+Handlers receive `(event, state, L, element)`:
+```javascript
+l.h({
+  save: (e, s, L, el) => {
+    L.u({ saved: true });
+    L.t('Saved!', 'ok');
+  }
+});
+```
+
 ## Conditional Rendering
 
 ### data-m-if
-Shows/hides element based on state truthiness.
+Shows/hides element based on expressions.
 ```html
-<div data-m-if="showDetails">Details here</div>
+<!-- Simple truthy -->
+<div data-m-if="user">Logged in</div>
+
+<!-- Negation -->
 <div data-m-if="!loading">Content loaded</div>
+
+<!-- Array length checks -->
+<div data-m-if="items.length==0">No items</div>
+<div data-m-if="items.length>0">Has items</div>
+
+<!-- Equality -->
+<div data-m-if="status==active">Active</div>
+<div data-m-if="role!=admin">Not admin</div>
 ```
 
 ### data-m-class
@@ -138,6 +190,9 @@ Adds CSS class conditionally.
 
 <!-- Equality check -->
 <li data-m-class="selected:currentId==itemId">Item</li>
+
+<!-- Multiple rules -->
+<li data-m-class="active:isActive,disabled:isDisabled">Item</li>
 ```
 
 ## Text Transforms (Pipes)
@@ -147,6 +202,7 @@ Use with `data-m-bind`:
 <span data-m-bind="name|upper"></span>  <!-- UPPERCASE -->
 <span data-m-bind="name|lower"></span>  <!-- lowercase -->
 <span data-m-bind="name|title"></span>  <!-- Title Case -->
+<span data-m-bind="name|trim"></span>   <!-- trimmed -->
 ```
 
 ## Route Parameters
@@ -158,9 +214,32 @@ Use `:param` syntax in routes:
 </section>
 ```
 
-Access in handlers via `L.p()`:
+Access in handlers via `l.p()`:
 ```javascript
-const params = L.p(); // { id: "123" }
+const params = l.p(); // { id: "123" }
+```
+
+## Built-in State
+
+The runtime provides automatic state values:
+
+| Key | Type | Description |
+|-----|------|-------------|
+| `_offline` | boolean | `true` when browser is offline |
+
+```html
+<span data-m-if="_offline">You're offline</span>
+```
+
+## LocalStorage Persistence
+
+Mark state keys for automatic persistence:
+```json
+{
+  "v": 1,
+  "r": { "s": { "items": [], "theme": "light" } },
+  "persist": ["items", "theme"]
+}
 ```
 
 ## ARIA Automation
@@ -175,3 +254,4 @@ The runtime automatically adds appropriate ARIA attributes:
 | `disclosure` | `aria-expanded` |
 | `disabled` | `aria-disabled="true"` |
 | `progress` | `role="progressbar"`, `aria-valuenow/min/max` |
+| `toast` | `aria-live="polite"` |

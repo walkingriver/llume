@@ -11,11 +11,12 @@ The manifest is embedded JSON in `<script type="application/llume+json" id="mani
     "t": "div",
     "a": {"id": "app"},
     "c": [...],
-    "s": {"count": 0}
+    "s": {"count": 0, "items": []}
   },
+  "persist": ["items"],
   "l": {
-    "en": {"@title": "Hello", "@btn": "Click"},
-    "es": {"@title": "Hola", "@btn": "Clic"}
+    "en": {"title": "Hello", "btn": "Click"},
+    "es": {"title": "Hola", "btn": "Clic"}
   },
   "t": {
     "--m-p": "#0066ff",
@@ -31,8 +32,25 @@ The manifest is embedded JSON in `<script type="application/llume+json" id="mani
 |-----|------|----------|-------------|
 | `v` | number | Yes | Schema version (always `1`) |
 | `r` | object | No | Root element with initial state |
+| `persist` | array | No | State keys to persist to localStorage |
 | `l` | object | No | Locale strings by language code |
 | `t` | object | No | CSS custom properties (theme) |
+
+## State Persistence
+
+The `persist` array lists state keys that should survive page refresh:
+
+```json
+{
+  "v": 1,
+  "r": { "s": { "items": [], "counter": 0, "temp": "" } },
+  "persist": ["items", "counter"]
+}
+```
+
+- Listed keys are saved to localStorage on every state change
+- On page load, persisted values are restored from localStorage
+- Non-persisted keys (like `temp` above) reset to initial values
 
 ## Element Structure (recursive in `r`)
 

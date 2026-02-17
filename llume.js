@@ -1,20 +1,24 @@
 /**
- * LLuMe Runtime v1.1.0
+ * LLuMe Runtime v1.2.0
  * AI-native web framework - sole user is another LLM
  * Target: ≤9KB gzipped
  */
 const D=document,W=window,Q=(s,c=D)=>c.querySelector(s),A=(s,c=D)=>c.querySelectorAll(s);
-let _s={},_l={},_t={},_ln='en',_h={},_m=null,_p={},_rp={};
+let _s={},_l={},_t={},_ln='en',_h={},_m=null,_p={},_rp={},_ps=[],_ol=!navigator.onLine;
 
 // Proxy-based reactive state
 const px=(o,cb)=>{
   if(typeof o!=='object'||o===null)return o;
   return new Proxy(o,{
     get:(t,k)=>{const v=t[k];return typeof v==='object'&&v!==null?px(v,cb):v;},
-    set:(t,k,v)=>{t[k]=v;cb();return true;},
-    deleteProperty:(t,k)=>{delete t[k];cb();return true;}
+    set:(t,k,v)=>{t[k]=v;cb();sv();return true;},
+    deleteProperty:(t,k)=>{delete t[k];cb();sv();return true;}
   });
 };
+
+// LocalStorage persistence
+const sv=()=>{if(_ps.length){const d={};_ps.forEach(k=>{if(_s[k]!==undefined)d[k]=_s[k];});try{localStorage.setItem('llume',JSON.stringify(d));}catch{}}};
+const ld=()=>{try{const d=JSON.parse(localStorage.getItem('llume')||'{}');_ps.forEach(k=>{if(d[k]!==undefined)_s[k]=d[k];});}catch{}};
 
 // DOM diffing for arrays
 const df=(el,arr,tpl,key)=>{
@@ -29,6 +33,7 @@ const df=(el,arr,tpl,key)=>{
     if(!n){
       n=tpl.content.cloneNode(true).firstElementChild;
       n.dataset.mK=k;
+      bo(n);
     }
     A('[data-m-f]',n).forEach(f=>{
       const p=f.dataset.mF;
@@ -59,8 +64,9 @@ const ai=()=>A('[data-m-tx]').forEach(ti);
 const UC=`
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--m-p:#0066ff;--m-s:#6c757d;--m-ok:#28a745;--m-err:#dc3545;--m-bg:#fff;--m-fg:#212529;font-family:system-ui,sans-serif;line-height:1.5}
-body{background:var(--m-bg);color:var(--m-fg)}
-.f{display:flex}.fc{display:flex;flex-direction:column}.fw{display:flex;flex-wrap:wrap}.fi{align-items:center}.fj{justify-content:center}.fb{justify-content:space-between}.fa{justify-content:space-around}.fe{justify-content:flex-end}.fs{justify-content:flex-start}.fg{flex-grow:1}
+body{background:var(--m-bg);color:var(--m-fg);transition:background .3s,color .3s}
+.f{display:flex}.fc{flex-direction:column}.fw{flex-wrap:wrap}.fi{align-items:center}.fj{justify-content:center}.fb{justify-content:space-between}.fa{justify-content:space-around}.fe{justify-content:flex-end}.fs{justify-content:flex-start}.fg{flex-grow:1}
+.g{display:grid}.gc2{grid-template-columns:repeat(2,1fr)}.gc3{grid-template-columns:repeat(3,1fr)}.gc4{grid-template-columns:repeat(4,1fr)}.gc5{grid-template-columns:repeat(5,1fr)}.gc6{grid-template-columns:repeat(6,1fr)}.gr2{grid-template-rows:repeat(2,1fr)}.gr3{grid-template-rows:repeat(3,1fr)}
 .g1{gap:.25rem}.g2{gap:.5rem}.g3{gap:1rem}.g4{gap:1.5rem}.g5{gap:2rem}
 .p1{padding:.25rem}.p2{padding:.5rem}.p3{padding:1rem}.p4{padding:1.5rem}.p5{padding:2rem}
 .px1{padding-inline:.25rem}.px2{padding-inline:.5rem}.px3{padding-inline:1rem}.px4{padding-inline:1.5rem}.px5{padding-inline:2rem}
@@ -75,8 +81,9 @@ body{background:var(--m-bg);color:var(--m-fg)}
 .t1{font-size:.75rem}.t2{font-size:.875rem}.t3{font-size:1rem}.t4{font-size:1.25rem}.t5{font-size:1.5rem}.t6{font-size:2rem}.t7{font-size:3rem}
 .tc{text-align:center}.tr{text-align:right}.tl{text-align:left}
 .tb{font-weight:700}.tn{font-weight:400}.ti{font-style:italic}
-.tu{text-transform:uppercase}.tl{text-transform:lowercase}.tt{text-transform:capitalize}
+.tu{text-transform:uppercase}.tlo{text-transform:lowercase}.tt{text-transform:capitalize}
 .td{text-decoration:underline}.tdn{text-decoration:none}
+.ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ln2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.ln3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .c1{color:var(--m-p)}.c2{color:var(--m-s)}.c3{color:var(--m-ok)}.c4{color:var(--m-err)}.cw{color:#fff}.cb{color:#000}.cg{color:#666}
 .b1{background:var(--m-p)}.b2{background:var(--m-s)}.b3{background:var(--m-ok)}.b4{background:var(--m-err)}.bw{background:#fff}.bb{background:#000}.bg{background:#f5f5f5}.bt{background:transparent}
 .r{border-radius:4px}.r1{border-radius:2px}.r2{border-radius:8px}.r3{border-radius:12px}.rf{border-radius:9999px}
@@ -91,6 +98,8 @@ body{background:var(--m-bg);color:var(--m-fg)}
 .cp{cursor:pointer}.cn{cursor:not-allowed}
 .pe{pointer-events:none}.pa{pointer-events:auto}
 .us{user-select:none}
+.tr{transition:all .2s ease}.tr3{transition:all .3s ease}.tr5{transition:all .5s ease}
+.spin{animation:m-spin 1s linear infinite}.pulse{animation:m-pulse 2s ease-in-out infinite}.fade{animation:m-fade .3s ease}
 a{color:var(--m-p);text-decoration:none}a:hover{text-decoration:underline}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
@@ -100,7 +109,14 @@ button{cursor:pointer}
 input,select,textarea{padding:.5rem;border:1px solid #ccc;border-radius:4px}
 input:focus,select:focus,textarea:focus{outline:2px solid var(--m-p);outline-offset:1px}
 ul,ol{list-style:none}
-@media(max-width:768px){.sm\\:dn{display:none}.sm\\:db{display:block}.sm\\:fc{flex-direction:column}.sm\\:wf{width:100%}}
+.dark{--m-bg:#1a1a1a;--m-fg:#f5f5f5}
+[data-m-toast]{position:fixed;bottom:1rem;right:1rem;padding:1rem 1.5rem;border-radius:8px;color:#fff;z-index:9999;transform:translateY(100px);opacity:0;transition:all .3s ease;pointer-events:none}
+[data-m-toast].show{transform:translateY(0);opacity:1;pointer-events:auto}
+[data-m-toast].ok{background:var(--m-ok)}[data-m-toast].err{background:var(--m-err)}[data-m-toast].info{background:var(--m-p)}
+@keyframes m-spin{to{transform:rotate(360deg)}}
+@keyframes m-pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes m-fade{from{opacity:0}to{opacity:1}}
+@media(max-width:768px){.sm\\:dn{display:none}.sm\\:db{display:block}.sm\\:fc{flex-direction:column}.sm\\:wf{width:100%}.sm\\:gc1{grid-template-columns:1fr}}
 `;
 
 // CSS custom properties injection
@@ -110,11 +126,6 @@ const cs=()=>{
   let r=UC+':root{';
   for(const[k,v]of Object.entries(_t))r+=`${k}:${v};`;
   r+='}';
-  r+=`@media(max-width:320px){:root{--m-bp:xs;}}`;
-  r+=`@media(min-width:321px)and(max-width:768px){:root{--m-bp:sm;}}`;
-  r+=`@media(min-width:769px)and(max-width:1024px){:root{--m-bp:md;}}`;
-  r+=`@media(min-width:1025px)and(max-width:1440px){:root{--m-bp:lg;}}`;
-  r+=`@media(min-width:1441px){:root{--m-bp:xl;}}`;
   st.textContent=r;
 };
 
@@ -294,18 +305,26 @@ const pg=(el)=>{
   el._mSet=(v)=>{el.setAttribute('aria-valuenow',String(v));br.style.width=`${(v/mx)*100}%`;};
 };
 
-// Enhancement: date picker (simple)
-const dt=(el)=>{
-  if(el.type!=='date')el.type='date';
-  el.setAttribute('aria-label',el.getAttribute('aria-label')||'Date input');
+// Enhancement: toast container
+const tc=(el)=>{
+  el.setAttribute('data-m-toast','');
+  el.setAttribute('aria-live','polite');
+};
+
+// Enhancement: dark mode toggle
+const dm=(el)=>{
+  const key='llume-dark';
+  const apply=(dark)=>{D.body.classList.toggle('dark',dark);try{localStorage.setItem(key,dark);}catch{}};
+  try{const saved=localStorage.getItem(key);if(saved==='true')apply(true);}catch{}
+  el.addEventListener('click',()=>apply(!D.body.classList.contains('dark')));
 };
 
 // Enhancement map
 const EN={
   ripple:rp,modal:md,tabs:tb,accordion:ac,disclosure:dc,
-  tooltip:tt,combobox:cb,filterable:cb,progress:pg,date:dt,
-  primary:(el)=>{el.style.cssText+=`background:var(--m-p,#0066ff);color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;`;},
-  secondary:(el)=>{el.style.cssText+=`background:var(--m-s,#6c757d);color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;`;},
+  tooltip:tt,combobox:cb,filterable:cb,progress:pg,toast:tc,darkmode:dm,
+  primary:(el)=>{el.classList.add('tr');},
+  secondary:(el)=>{el.classList.add('tr');},
   disabled:(el)=>{el.disabled=true;el.setAttribute('aria-disabled','true');el.style.opacity='0.5';el.style.cursor='not-allowed';},
   autofocus:(el)=>{setTimeout(()=>el.focus(),0);},
   validate:(el)=>{}
@@ -373,7 +392,6 @@ const rt=()=>{
   _rp={};
   A('[data-m-route]').forEach(s=>{
     const m=s.dataset.mRoute;
-    // Check for param routes like /hero/:id
     if(m.includes(':')){
       const mParts=m.split('/');
       const hParts=h.split('/');
@@ -407,14 +425,65 @@ const rt=()=>{
   bc();
 };
 
+// Expression evaluator for conditions
+const ev=(expr)=>{
+  if(!expr)return false;
+  const neg=expr.startsWith('!');
+  const e=neg?expr.slice(1).trim():expr.trim();
+  // Handle .length==0
+  const lenMatch=e.match(/^(\w+)\.length([=<>!]+)(\d+)$/);
+  if(lenMatch){
+    const[,k,op,n]=lenMatch;
+    const arr=_s[k];
+    const len=Array.isArray(arr)?arr.length:0;
+    const num=parseInt(n);
+    let r=false;
+    if(op==='==')r=len===num;
+    else if(op==='===')r=len===num;
+    else if(op==='!=')r=len!==num;
+    else if(op==='>')r=len>num;
+    else if(op==='<')r=len<num;
+    else if(op==='>=')r=len>=num;
+    else if(op==='<=')r=len<=num;
+    return neg?!r:r;
+  }
+  // Handle key==value
+  const eqMatch=e.match(/^(\w+(?:\.\w+)?)==(.+)$/);
+  if(eqMatch){
+    const[,k,v]=eqMatch;
+    const kv=gv(k);
+    const r=String(kv)===v;
+    return neg?!r:r;
+  }
+  // Handle key!=value
+  const neMatch=e.match(/^(\w+(?:\.\w+)?)!=(.+)$/);
+  if(neMatch){
+    const[,k,v]=neMatch;
+    const kv=gv(k);
+    const r=String(kv)!==v;
+    return neg?!r:r;
+  }
+  // Simple truthy
+  const v=gv(e);
+  const r=!!v;
+  return neg?!r:r;
+};
+
+// Get nested value
+const gv=(k)=>{
+  const parts=k.split('.');
+  let v=_s;
+  for(const p of parts){
+    if(v===undefined||v===null)return undefined;
+    v=v[p]??_rp[p];
+  }
+  return v;
+};
+
 // Conditional rendering (data-m-if)
 const ci=()=>{
   A('[data-m-if]').forEach(el=>{
-    const k=el.dataset.mIf;
-    const neg=k.startsWith('!');
-    const key=neg?k.slice(1):k;
-    const v=_s[key];
-    const show=neg?!v:!!v;
+    const show=ev(el.dataset.mIf);
     el.hidden=!show;
     el.setAttribute('aria-hidden',String(!show));
   });
@@ -427,20 +496,8 @@ const cc=()=>{
     rules.forEach(rule=>{
       const[cls,cond]=rule.split(':').map(x=>x.trim());
       if(!cls||!cond)return;
-      // Support simple equality: selected:selectedId==id
-      const eqMatch=cond.match(/^(\w+)==(\w+)$/);
-      if(eqMatch){
-        const[,left,right]=eqMatch;
-        const lv=_s[left]??_rp[left];
-        const rv=_s[right]??_rp[right]??right;
-        if(String(lv)===String(rv))el.classList.add(cls);
-        else el.classList.remove(cls);
-      }else{
-        // Simple truthy check
-        const v=_s[cond];
-        if(v)el.classList.add(cls);
-        else el.classList.remove(cls);
-      }
+      if(ev(cond))el.classList.add(cls);
+      else el.classList.remove(cls);
     });
   });
 };
@@ -448,12 +505,30 @@ const cc=()=>{
 // Combined binding update
 const bc=()=>{ci();cc();bd();};
 
+// Bind data-m-on events
+const bo=(el)=>{
+  A('[data-m-on]',el).forEach(oe);
+  if(el.dataset&&el.dataset.mOn)oe(el);
+};
+const oe=(el)=>{
+  const spec=el.dataset.mOn;
+  if(!spec)return;
+  spec.split(',').forEach(pair=>{
+    const[evt,fn]=pair.split(':').map(x=>x.trim());
+    if(!evt||!fn)return;
+    el.addEventListener(evt,e=>{
+      if(evt==='submit')e.preventDefault();
+      if(_h[fn])_h[fn](e,_s,l,el);
+    });
+  });
+};
+
 // Bind state to DOM
 const bd=()=>{
   A('[data-m-bind]').forEach(el=>{
     const raw=el.dataset.mBind;
     const[k,pipe]=raw.includes('|')?raw.split('|').map(x=>x.trim()):[raw,null];
-    const v=_s[k]??_rp[k];
+    const v=gv(k);
     if(Array.isArray(v)){
       const tplId=el.dataset.mTpl;
       const tpl=tplId?Q(`#${tplId}`):Q('template',el);
@@ -467,26 +542,26 @@ const bd=()=>{
   });
 };
 
-// Event binding
-const ev=(el,em)=>{
-  if(!em)return;
-  for(const[t,fn]of Object.entries(em)){
-    const et={c:'click',i:'input',s:'submit',f:'focus',b:'blur',k:'keydown',e:'keyup',m:'mouseenter',o:'mouseleave'}[t]||t;
-    el.addEventListener(et,e=>{
-      if(et==='submit')e.preventDefault();
-      if(_h[fn])_h[fn](e,_s,l);
-    });
-  }
+// Toast helper
+const toast=(msg,type='info',dur=3000)=>{
+  let t=Q('[data-m-toast]');
+  if(!t){t=D.createElement('div');t.setAttribute('data-m-toast','');D.body.appendChild(t);}
+  t.textContent=msg;
+  t.className=type+' show';
+  setTimeout(()=>t.classList.remove('show'),dur);
 };
 
 // Mount from manifest JSON
 const mn=(m)=>{
   _m=m;
   if(m.l)_l=m.l;
-  if(m.t){_t=m.t;cs();}
+  if(m.t){_t=m.t;cs();}else cs();
+  if(m.persist)_ps=m.persist;
   if(m.r?.s)_s=px({..._s,...m.r.s},bc);
+  ld();
   ai();
   A('[data-m-enhance]').forEach(ae);
+  A('[data-m-on]').forEach(oe);
   A('[data-m-bind]').forEach(el=>{
     const inp=el.tagName==='INPUT'||el.tagName==='SELECT'||el.tagName==='TEXTAREA';
     if(inp){
@@ -500,6 +575,9 @@ const mn=(m)=>{
   });
   bc();
   W.addEventListener('hashchange',rt);
+  W.addEventListener('online',()=>{_ol=false;_s._offline=false;bc();});
+  W.addEventListener('offline',()=>{_ol=true;_s._offline=true;bc();});
+  _s._offline=_ol;
   rt();
 };
 
@@ -533,24 +611,8 @@ const l={
   s:()=>JSON.parse(JSON.stringify(_s)),
   p:()=>({..._rp}),
   nav:(h)=>{location.hash=h;},
-  h:(hm)=>{Object.assign(_h,hm);
-    A('[data-m-e]').forEach(el=>{
-      try{const em=JSON.parse(el.dataset.mE.replace(/'/g,'"'));ev(el,em);}catch{}
-    });
-    const sc=Q('#manifest');
-    if(sc){
-      const m=JSON.parse(sc.textContent);
-      const walk=(n)=>{
-        if(!n)return;
-        if(n.e&&n.a){
-          const el=n.a.id?Q(`#${n.a.id}`):null;
-          if(el)ev(el,n.e);
-        }
-        if(n.c)n.c.forEach(walk);
-      };
-      if(m.r)walk(m.r);
-    }
-  },
+  t:toast,
+  h:(hm)=>{Object.assign(_h,hm);},
   _s:()=>_s,
   _rp:()=>_rp
 };

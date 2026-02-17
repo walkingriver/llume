@@ -62,9 +62,63 @@ Every page is complete, semantic, accessible static HTML. JavaScript only adds p
 
 ### Tiny by Mandate
 
-- Runtime: ~5 KB gzipped
+- Runtime: ~7 KB gzipped
 - Handlers: ≤500 bytes
 - Lighthouse: 95-100 across all metrics
+
+---
+
+## What's New in v1.2
+
+### Event Binding
+No more `onclick="window._fn()"` patterns:
+```html
+<button data-m-on="click:save">Save</button>
+```
+
+### Toast Notifications
+```javascript
+l.t('Saved!', 'ok');      // success toast
+l.t('Error!', 'err');     // error toast
+l.t('Info', 'info');      // info toast
+```
+
+### LocalStorage Persistence
+State survives page refresh:
+```json
+{"v":1,"r":{"s":{"items":[]}},"persist":["items"]}
+```
+
+### Conditional Expressions
+Full expression support in `data-m-if`:
+```html
+<div data-m-if="items.length==0">Empty</div>
+<div data-m-if="!loading">Ready</div>
+<div data-m-if="status==active">Active</div>
+```
+
+### Dark Mode Toggle
+```html
+<button data-m-enhance="darkmode">Toggle</button>
+```
+Persists preference automatically.
+
+### Animations
+```html
+<div class="spin">...</div>   <!-- spinner -->
+<div class="pulse">...</div>  <!-- pulsing -->
+<div class="fade">...</div>   <!-- fade in -->
+```
+
+### Grid Layout
+```html
+<div class="g gc3 g2">...</div>  <!-- 3-col grid with gap -->
+```
+
+### Offline Detection
+```html
+<span data-m-if="_offline">You're offline</span>
+```
 
 ---
 
@@ -83,20 +137,23 @@ Every LLuMe page has exactly three parts:
   <meta charset="utf-8">
   <title>Page Title</title>
 </head>
-<body>
-  <!-- 1. Complete static HTML -->
-  <h1 data-m-tx="title"></h1>
-  <button data-m-enhance="primary ripple">Click</button>
+<body class="p3">
+  <!-- 1. Complete static HTML with utility classes -->
+  <h1 class="t6 c1 tb" data-m-tx="title"></h1>
+  <button data-m-on="click:save" data-m-enhance="primary ripple">Save</button>
+  
+  <div data-m-if="items.length==0" class="p3 bg r">No items</div>
+  <ul data-m-bind="items" data-m-tpl="tpl" data-m-key="id"></ul>
 
-  <!-- 2. Embedded manifest (state, i18n, theme) -->
+  <!-- 2. Embedded manifest (state, i18n, theme, persistence) -->
   <script type="application/llume+json" id="manifest">
-    {"v":1,"l":{"en":{"title":"Hello"}},"t":{"--m-p":"#0066ff"}}
+    {"v":1,"r":{"s":{"items":[]}},"persist":["items"],"l":{"en":{"title":"Hello"}},"t":{"--m-p":"#0066ff"}}
   </script>
 
   <!-- 3. Tiny handlers (<500 bytes) -->
   <script type="module">
     import{l}from"./llume.js";
-    l.h({f1:(e,s,L)=>{L.u({count:s.count+1});}});
+    l.h({save:(e,s,L)=>{L.u({saved:true});L.t('Saved!','ok');}});
   </script>
 </body>
 </html>
@@ -104,14 +161,16 @@ Every LLuMe page has exactly three parts:
 
 ### The Runtime
 
-`llume.js` is a ~5 KB gzipped runtime that:
+`llume.js` is a ~7 KB gzipped runtime that:
 - Parses the embedded manifest
 - Attaches Proxy-based reactivity
-- Wires events to handlers
-- Applies enhancements (ripple, modal, tabs, etc.)
-- Injects ARIA attributes automatically
+- Wires `data-m-on` events to handlers
+- Applies enhancements (ripple, modal, tabs, toast, darkmode, etc.)
+- Injects utility CSS classes
 - Handles i18n switching
-- Manages hash-based routing
+- Manages hash-based routing with params
+- Persists designated state to localStorage
+- Tracks online/offline status
 
 The skill bundles `llume.js` directly — no CDN needed.
 
@@ -124,18 +183,58 @@ LLuMe covers the hard 80%:
 | Feature | How |
 |---------|-----|
 | Buttons | `data-m-enhance="primary ripple"` |
-| Forms | Native `<form>` + `validate` flag |
+| Forms | Native `<form>` + `data-m-on="submit:fn"` |
 | Modals | `data-m-enhance="modal"` on dialog/div |
 | Tabs | `data-m-enhance="tabs"` + data-m-tab/panel |
 | Accordions | `data-m-enhance="accordion"` |
 | Tooltips | `data-m-enhance="tooltip"` |
 | Dropdowns | `data-m-enhance="combobox"` |
 | Progress bars | `data-m-enhance="progress"` |
+| Dark mode | `data-m-enhance="darkmode"` |
+| Toasts | `l.t(msg, type)` |
 | i18n | `data-m-tx="key"` + manifest locales |
 | Theming | CSS custom properties in manifest |
-| Routing | Hash-based with `data-m-route` |
+| Routing | Hash-based with `data-m-route="/path/:id"` |
 | Data binding | `data-m-bind="stateKey"` |
+| Conditionals | `data-m-if="expr"` with negation/expressions |
 | List rendering | `data-m-tpl` + `data-m-key` |
+| Persistence | `"persist":["key1","key2"]` in manifest |
+| Offline status | `data-m-if="_offline"` |
+
+### Utility Classes
+
+Terse, token-efficient styling built into the runtime:
+
+| Category | Classes |
+|----------|---------|
+| Flex | `f fc fw fi fj fb fg` |
+| Grid | `g gc2 gc3 gc4 gc5 gc6` |
+| Gap | `g1 g2 g3 g4 g5` |
+| Padding | `p1-p5 px1-px5 py1-py5` |
+| Margin | `m1-m5 mx1-mx5 my1-my5 ma mxa` |
+| Text | `t1-t7 tc tr tl tb tn ti tu ell ln2 ln3` |
+| Color | `c1-c4 cw cb cg` |
+| Background | `b1-b4 bw bb bg bt` |
+| Border | `r r1 r2 r3 rf bd bd1 bd2 bdn` |
+| Shadow | `sh sh1 sh2 sh3` |
+| Layout | `wf wh hf hv xw1-xw5` |
+| Position | `rel abs fix stk t0 r0 b0 l0 i0 z1-z3` |
+| Display | `dn db di dib` |
+| Animation | `tr tr3 tr5 spin pulse fade` |
+| Responsive | `sm:dn sm:db sm:fc sm:wf sm:gc1` |
+
+---
+
+## Examples
+
+| Example | Description |
+|---------|-------------|
+| `features-demo.html` | Showcases all v1.2 features |
+| `todo-app.html` | Persistent todos with dark mode |
+| `tour-of-heroes.html` | Angular tutorial port |
+| `landing-page.html` | Marketing page with accordion/tabs |
+| `contact-form.html` | Form with validation |
+| `minimal-card.html` | Styled card with utility classes |
 
 ---
 
@@ -160,30 +259,37 @@ LLuMe covers the hard 80%:
 llume/
 ├── SKILL.md           # Main skill instructions
 ├── llume.js           # Runtime (bundled with skill)
+├── PLAN.md            # Roadmap and feature priorities
 ├── reference/         # Detailed specs
 │   ├── manifest-schema.md
 │   ├── enhancement-rules.md
-│   └── runtime-api.md
+│   ├── runtime-api.md
+│   └── utility-classes.md
 ├── examples/          # Few-shot learning examples
+│   ├── features-demo.html
 │   ├── todo-app.html
+│   ├── tour-of-heroes.html
 │   ├── landing-page.html
-│   └── contact-form.html
+│   ├── contact-form.html
+│   └── minimal-card.html
 └── bin/
     └── install.js     # npx installer
 ```
 
 ---
 
-## Future: SSR
+## Future: SSR & PWA
 
-Server-side rendering will be a separate optional module:
+Server-side rendering and PWA support planned:
 
 ```javascript
+// SSR (future)
 import { renderStatic } from 'llume/ssr.js';
 const html = renderStatic(manifest);
-```
 
-This would require Node/Deno/Bun, but the generated output remains pure browser ESM.
+// PWA (future)
+<div data-m-enhance="pwa"></div>
+```
 
 ---
 

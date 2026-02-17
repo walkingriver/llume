@@ -1,14 +1,14 @@
 # Utility Classes
 
-LLuMe includes ~80 utility classes for styling. Maximally terse, one way per concept.
+LLuMe includes ~100 utility classes for styling. Maximally terse, one way per concept.
 
-## Layout
+## Flex Layout
 
 | Class | CSS |
 |-------|-----|
 | `f` | `display: flex` |
-| `fc` | `display: flex; flex-direction: column` |
-| `fw` | `display: flex; flex-wrap: wrap` |
+| `fc` | `flex-direction: column` |
+| `fw` | `flex-wrap: wrap` |
 | `fi` | `align-items: center` |
 | `fj` | `justify-content: center` |
 | `fb` | `justify-content: space-between` |
@@ -16,6 +16,19 @@ LLuMe includes ~80 utility classes for styling. Maximally terse, one way per con
 | `fe` | `justify-content: flex-end` |
 | `fs` | `justify-content: flex-start` |
 | `fg` | `flex-grow: 1` |
+
+## Grid Layout
+
+| Class | CSS |
+|-------|-----|
+| `g` | `display: grid` |
+| `gc2` | `grid-template-columns: repeat(2, 1fr)` |
+| `gc3` | `grid-template-columns: repeat(3, 1fr)` |
+| `gc4` | `grid-template-columns: repeat(4, 1fr)` |
+| `gc5` | `grid-template-columns: repeat(5, 1fr)` |
+| `gc6` | `grid-template-columns: repeat(6, 1fr)` |
+| `gr2` | `grid-template-rows: repeat(2, 1fr)` |
+| `gr3` | `grid-template-rows: repeat(3, 1fr)` |
 
 ## Gap
 
@@ -75,8 +88,18 @@ LLuMe includes ~80 utility classes for styling. Maximally terse, one way per con
 | `tn` | font-weight: 400 |
 | `ti` | font-style: italic |
 | `tu` | text-transform: uppercase |
+| `tlo` | text-transform: lowercase |
+| `tt` | text-transform: capitalize |
 | `td` | text-decoration: underline |
 | `tdn` | text-decoration: none |
+
+## Text Truncation
+
+| Class | CSS |
+|-------|-----|
+| `ell` | Single line with ellipsis |
+| `ln2` | Clamp to 2 lines |
+| `ln3` | Clamp to 3 lines |
 
 ## Colors
 
@@ -181,6 +204,30 @@ LLuMe includes ~80 utility classes for styling. Maximally terse, one way per con
 | `pa` | pointer-events: auto |
 | `us` | user-select: none |
 
+## Transitions
+
+| Class | CSS |
+|-------|-----|
+| `tr` | transition: all 0.2s ease |
+| `tr3` | transition: all 0.3s ease |
+| `tr5` | transition: all 0.5s ease |
+
+## Animations
+
+| Class | Effect |
+|-------|--------|
+| `spin` | 360° rotation loop |
+| `pulse` | Opacity pulsing |
+| `fade` | Fade in on appear |
+
+## Dark Mode
+
+| Class | Effect |
+|-------|--------|
+| `dark` | Dark theme (add to body) |
+
+The `dark` class is automatically toggled by `data-m-enhance="darkmode"` buttons.
+
 ## Responsive (sm: prefix for <768px)
 
 | Class | Effect |
@@ -189,16 +236,23 @@ LLuMe includes ~80 utility classes for styling. Maximally terse, one way per con
 | `sm:db` | show on mobile |
 | `sm:fc` | column on mobile |
 | `sm:wf` | full width on mobile |
+| `sm:gc1` | single column grid on mobile |
 
 ## Example
 
 ```html
-<div class="f fc g3 p4 xw3 mxa">
-  <h1 class="t6 tb c1 tc">Title</h1>
-  <p class="t3 cg tc">Subtitle text</p>
-  <div class="f g2 fw fj">
-    <button class="b1 cw p2 px4 r cp">Primary</button>
-    <button class="b2 cw p2 px4 r cp">Secondary</button>
+<!-- Card with grid, animations, and responsive -->
+<div class="g gc3 g3 sm:gc1">
+  <div class="bw r2 sh2 p4 f fc g2 tr fade">
+    <h2 class="t5 tb c1 ell">Card Title Here</h2>
+    <p class="t3 cg ln2">Description text that might be long...</p>
+    <button class="b1 cw p2 r cp tr">Action</button>
   </div>
+</div>
+
+<!-- Loading spinner -->
+<div data-m-if="loading" class="f fj fi g2">
+  <div class="spin b1 r" style="width:24px;height:24px"></div>
+  <span class="cg">Loading...</span>
 </div>
 ```

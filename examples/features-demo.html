@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="LLuMe v1.2 Features Demo">
+<title>LLuMe Features</title>
+</head>
+<body class="p4">
+<div class="xw3 mxa f fc g4">
+<header class="f fb fi">
+<h1 class="t6 c1 tb">LLuMe v1.2</h1>
+<button data-m-enhance="darkmode secondary" class="r">Toggle Dark</button>
+</header>
+
+<!-- Toast Demo -->
+<section class="bd r p3 f fc g2">
+<h2 class="t4 tb">Toast Notifications</h2>
+<div class="f g2">
+<button data-m-on="click:ok" data-m-enhance="primary ripple">Success</button>
+<button data-m-on="click:err" data-m-enhance="secondary">Error</button>
+<button data-m-on="click:info" class="bg p2 px3 r cp">Info</button>
+</div>
+</section>
+
+<!-- Event Binding Demo -->
+<section class="bd r p3 f fc g2">
+<h2 class="t4 tb">Event Binding (data-m-on)</h2>
+<p class="cg">No more window._ functions. Clean handler binding.</p>
+<input type="text" placeholder="Type something..." data-m-on="input:typing" class="wf">
+<p>You typed: <span class="tb c1" data-m-bind="typed"></span></p>
+</section>
+
+<!-- Conditional Expressions -->
+<section class="bd r p3 f fc g2">
+<h2 class="t4 tb">Conditional Expressions</h2>
+<div class="f g2">
+<button data-m-on="click:addItem" data-m-enhance="primary">Add Item</button>
+<button data-m-on="click:clearItems" data-m-enhance="secondary">Clear All</button>
+</div>
+<div data-m-if="items.length==0" class="p3 bg r tc cg">
+<p>No items yet. Add some!</p>
+</div>
+<ul data-m-if="items.length>0" data-m-bind="items" data-m-tpl="item-tpl" data-m-key="id" class="f fc g1"></ul>
+<template id="item-tpl"><li class="f fi fb p2 bg r"><span data-m-f="name"></span><button data-m-on="click:removeItem" data-m-enhance="secondary" class="t2 py1 px2">X</button></li></template>
+<p class="cg t2">Count: <span class="tb" data-m-bind="items.length"></span></p>
+</section>
+
+<!-- LocalStorage Persistence -->
+<section class="bd r p3 f fc g2">
+<h2 class="t4 tb">LocalStorage Persistence</h2>
+<p class="cg">This counter survives page refresh.</p>
+<div class="f fi g3">
+<button data-m-on="click:dec" class="bg p2 px4 r cp t5">-</button>
+<span class="t6 tb" data-m-bind="counter"></span>
+<button data-m-on="click:inc" class="bg p2 px4 r cp t5">+</button>
+</div>
+</section>
+
+<!-- Grid Layout -->
+<section class="bd r p3 f fc g2">
+<h2 class="t4 tb">Grid Layout Classes</h2>
+<div class="g gc3 g2 sm:gc1">
+<div class="b1 cw p3 r tc">1</div>
+<div class="b1 cw p3 r tc">2</div>
+<div class="b1 cw p3 r tc">3</div>
+<div class="b2 cw p3 r tc">4</div>
+<div class="b2 cw p3 r tc">5</div>
+<div class="b2 cw p3 r tc">6</div>
+</div>
+</section>
+
+<!-- Animations -->
+<section class="bd r p3 f fc g2">
+<h2 class="t4 tb">Animations</h2>
+<div class="f g4 fi">
+<div class="b1 p3 r cw spin" style="width:40px;height:40px"></div>
+<div class="b3 p3 r cw pulse">Pulse</div>
+<div class="b4 p3 r cw fade">Fade</div>
+</div>
+</section>
+
+<!-- Truncation -->
+<section class="bd r p3 f fc g2">
+<h2 class="t4 tb">Text Truncation</h2>
+<p class="ell xw1 bg p2 r">This is a very long line that will be truncated with ellipsis because it has the ell class applied.</p>
+<p class="ln2 xw2 bg p2 r my2">This paragraph will be clamped to two lines maximum. It has more content than can fit in two lines, so it will be truncated with an ellipsis at the end of the second line.</p>
+</section>
+
+<!-- Offline Status -->
+<section class="bd r p3 f fc g2">
+<h2 class="t4 tb">Network Status</h2>
+<p data-m-if="!_offline" class="c3 tb">Online</p>
+<p data-m-if="_offline" class="c4 tb">Offline</p>
+<p class="cg t2">Try disconnecting your network to see this update.</p>
+</section>
+
+<!-- Loading State Pattern -->
+<section class="bd r p3 f fc g2">
+<h2 class="t4 tb">Loading State Pattern</h2>
+<button data-m-on="click:load" data-m-enhance="primary" data-m-if="!loading">Fetch Data</button>
+<div data-m-if="loading" class="f fi g2">
+<div class="spin b1 r" style="width:20px;height:20px"></div>
+<span class="cg">Loading...</span>
+</div>
+<p data-m-if="loadedData" class="c3 tb" data-m-bind="loadedData"></p>
+</section>
+</div>
+
+<script type="application/llume+json" id="manifest">{"v":1,"r":{"s":{"typed":"","items":[],"counter":0,"loading":false,"loadedData":null}},"persist":["counter","items"],"l":{"en":{}},"t":{"--m-p":"#6366f1"}}</script>
+<script type="module">
+import{l}from"../llume.js";
+let itemId=0;
+l.h({
+  ok:()=>l.t('Operation successful!','ok'),
+  err:()=>l.t('Something went wrong!','err'),
+  info:()=>l.t('Here is some information.','info'),
+  typing:(e)=>l.u({typed:e.target.value}),
+  addItem:()=>{const s=l.s();l.u({items:[...s.items,{id:++itemId,name:`Item ${itemId}`}]});},
+  clearItems:()=>l.u({items:[]}),
+  removeItem:(e,s,L,el)=>{const id=parseInt(el.closest('li').dataset.mK);l.u({items:s.items.filter(i=>i.id!==id)});},
+  inc:()=>l.u({counter:l.s().counter+1}),
+  dec:()=>l.u({counter:l.s().counter-1}),
+  load:async()=>{l.u({loading:true});await new Promise(r=>setTimeout(r,1500));l.u({loading:false,loadedData:'Data loaded at '+new Date().toLocaleTimeString()});}
+});
+</script>
+</body>
+</html>
