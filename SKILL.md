@@ -257,6 +257,20 @@ Follow these rules to achieve optimal Lighthouse scores:
 - **Explicit dimensions** on all images and media elements
 - **Reserve space** for dynamic content with min-height or aspect-ratio
 - **Avoid injecting content above existing content** after page load
+- **Dark mode detection in head** - Add inline script to detect and apply dark mode before body renders
+
+### Dark Mode & Accessibility
+- **Color contrast** - Dark mode primary color `#5c9eff` provides 5.4:1 contrast on `#2a2a2a` background (WCAG AA compliant)
+- **Apply dark mode early** - Use blocking inline script in `<head>` to prevent flash and CLS:
+  ```html
+  <script>try{var d=localStorage.getItem('llasm-dark');if(d==='true'||(d===null&&window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark');}catch(e){}</script>
+  <style>html.dark{--m-bg:#1a1a1a;--m-fg:#f5f5f5;--m-p:#5c9eff;background:var(--m-bg);color:var(--m-fg)}html.dark body{background:var(--m-bg);color:var(--m-fg)}html.dark .bg{background:#2a2a2a}html.dark .cg{color:#aaa}</style>
+  ```
+- **Dark mode class on html** - Apply `.dark` class to `document.documentElement` (html), not body, for earliest rendering
+- **Minimum contrast ratios**:
+  - Large text (18pt/24px+ or 14pt/18.66px+ bold): 3:1 minimum
+  - Normal text: 4.5:1 minimum
+  - UI components and graphics: 3:1 minimum
 
 ### Head Element Order
 ```html
