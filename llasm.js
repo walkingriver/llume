@@ -1,6 +1,6 @@
 /**
- * LLuMe Runtime v1.2.0
- * AI-native web framework - sole user is another LLM
+ * LLasM Runtime v1.2.0
+ * LLM Assembly Language - web framework for LLMs
  * Target: ≤9KB gzipped
  */
 const D=document,W=window,Q=(s,c=D)=>c.querySelector(s),A=(s,c=D)=>c.querySelectorAll(s);
@@ -17,8 +17,8 @@ const px=(o,cb)=>{
 };
 
 // LocalStorage persistence
-const sv=()=>{if(_ps.length){const d={};_ps.forEach(k=>{if(_s[k]!==undefined)d[k]=_s[k];});try{localStorage.setItem('llume',JSON.stringify(d));}catch{}}};
-const ld=()=>{try{const d=JSON.parse(localStorage.getItem('llume')||'{}');_ps.forEach(k=>{if(d[k]!==undefined)_s[k]=d[k];});}catch{}};
+const sv=()=>{if(_ps.length){const d={};_ps.forEach(k=>{if(_s[k]!==undefined)d[k]=_s[k];});try{localStorage.setItem('llasm',JSON.stringify(d));}catch{}}};
+const ld=()=>{try{const d=JSON.parse(localStorage.getItem('llasm')||'{}');_ps.forEach(k=>{if(d[k]!==undefined)_s[k]=d[k];});}catch{}};
 
 // DOM diffing for arrays
 const df=(el,arr,tpl,key)=>{
@@ -313,7 +313,7 @@ const tc=(el)=>{
 
 // Enhancement: dark mode toggle
 const dm=(el)=>{
-  const key='llume-dark';
+  const key='llasm-dark';
   const apply=(dark)=>{D.body.classList.toggle('dark',dark);try{localStorage.setItem(key,dark);}catch{}};
   try{const saved=localStorage.getItem(key);if(saved==='true')apply(true);}catch{}
   el.addEventListener('click',()=>apply(!D.body.classList.contains('dark')));

@@ -1,6 +1,6 @@
 # Manifest Schema
 
-The manifest is embedded JSON in `<script type="application/llume+json" id="manifest">`.
+The manifest is embedded JSON in `<script type="application/llasm+json" id="manifest">`.
 
 ## Full Structure
 

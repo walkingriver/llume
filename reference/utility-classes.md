@@ -1,6 +1,6 @@
 # Utility Classes
 
-LLuMe includes ~100 utility classes for styling. Maximally terse, one way per concept.
+LLasM includes ~100 utility classes for styling. Maximally terse, one way per concept.
 
 ## Flex Layout
 

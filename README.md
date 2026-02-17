@@ -1,18 +1,18 @@
-# LLuMe
+# LLasM
 
-**The Web Framework Built Exclusively for Large Language Models**
+**LLM Assembly Language — The Web Framework Built Exclusively for Large Language Models**
 
-LLuMe is the first framework whose only intended user is another LLM. Humans don't read, write, or debug LLuMe code. The framework exists solely to let language models generate complete, production-grade web pages faster and more reliably than any human-centric stack.
+LLasM is the first framework whose only intended user is another LLM. Humans don't read, write, or debug LLasM code. The framework exists solely to let language models generate complete, production-grade web pages faster and more reliably than any human-centric stack.
 
 ## Quickstart
 
 ### Install the Skill
 
 ```bash
-npx @walkingriver/llume
+npx @walkingriver/llasm
 ```
 
-This copies the LLuMe skill to `~/.cursor/skills/llume/`.
+This copies the LLasM skill to `~/.cursor/skills/llasm/`.
 
 ### Generate a Page
 
@@ -20,9 +20,9 @@ In Cursor, just ask:
 
 > "Build me a todo app with dark mode toggle"
 
-The agent reads the LLuMe skill and outputs:
+The agent reads the LLasM skill and outputs:
 1. A complete HTML file
-2. A copy of `llume.js` alongside it
+2. A copy of `llasm.js` alongside it
 
 ### Run It
 
@@ -62,7 +62,7 @@ Every page is complete, semantic, accessible static HTML. JavaScript only adds p
 
 ### Tiny by Mandate
 
-- Runtime: ~7 KB gzipped
+- Runtime: ~8 KB gzipped
 - Handlers: ≤500 bytes
 - Lighthouse: 95-100 across all metrics
 
@@ -124,11 +124,11 @@ Persists preference automatically.
 
 ## How It Works
 
-LLuMe is a **Cursor skill** that teaches the AI agent how to generate valid web pages.
+LLasM is a **Cursor skill** that teaches the AI agent how to generate valid web pages.
 
 ### What Gets Generated
 
-Every LLuMe page has exactly three parts:
+Every LLasM page has exactly three parts:
 
 ```html
 <!DOCTYPE html>
@@ -146,13 +146,13 @@ Every LLuMe page has exactly three parts:
   <ul data-m-bind="items" data-m-tpl="tpl" data-m-key="id"></ul>
 
   <!-- 2. Embedded manifest (state, i18n, theme, persistence) -->
-  <script type="application/llume+json" id="manifest">
+  <script type="application/llasm+json" id="manifest">
     {"v":1,"r":{"s":{"items":[]}},"persist":["items"],"l":{"en":{"title":"Hello"}},"t":{"--m-p":"#0066ff"}}
   </script>
 
   <!-- 3. Tiny handlers (<500 bytes) -->
   <script type="module">
-    import{l}from"./llume.js";
+    import{l}from"./llasm.js";
     l.h({save:(e,s,L)=>{L.u({saved:true});L.t('Saved!','ok');}});
   </script>
 </body>
@@ -161,7 +161,7 @@ Every LLuMe page has exactly three parts:
 
 ### The Runtime
 
-`llume.js` is a ~7 KB gzipped runtime that:
+`llasm.js` is a ~8 KB gzipped runtime that:
 - Parses the embedded manifest
 - Attaches Proxy-based reactivity
 - Wires `data-m-on` events to handlers
@@ -172,13 +172,13 @@ Every LLuMe page has exactly three parts:
 - Persists designated state to localStorage
 - Tracks online/offline status
 
-The skill bundles `llume.js` directly — no CDN needed.
+The skill bundles `llasm.js` directly — no CDN needed.
 
 ---
 
 ## What Can It Build?
 
-LLuMe covers the hard 80%:
+LLasM covers the hard 80%:
 
 | Feature | How |
 |---------|-----|
@@ -238,14 +238,14 @@ Terse, token-efficient styling built into the runtime:
 
 ---
 
-## Who Should Use LLuMe?
+## Who Should Use LLasM?
 
 - Teams where LLMs write 70-90% of frontend code
 - Projects prioritizing generation speed over human maintainability
 - Static-first sites needing rich interactivity
 - Experiments in autonomous UI generation
 
-## Who Should Not Use LLuMe?
+## Who Should Not Use LLasM?
 
 - Teams that expect humans to read or edit source
 - Apps requiring complex client-side routing
@@ -256,9 +256,9 @@ Terse, token-efficient styling built into the runtime:
 ## Project Structure
 
 ```
-llume/
+llasm/
 ├── SKILL.md           # Main skill instructions
-├── llume.js           # Runtime (bundled with skill)
+├── llasm.js           # Runtime (bundled with skill)
 ├── PLAN.md            # Roadmap and feature priorities
 ├── reference/         # Detailed specs
 │   ├── manifest-schema.md
@@ -284,7 +284,7 @@ Server-side rendering and PWA support planned:
 
 ```javascript
 // SSR (future)
-import { renderStatic } from 'llume/ssr.js';
+import { renderStatic } from 'llasm/ssr.js';
 const html = renderStatic(manifest);
 
 // PWA (future)

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Tour of Heroes - LLuMe implementation">
+<meta name="description" content="Tour of Heroes - LLasM implementation">
 <title>Tour of Heroes</title>
 </head>
 <body class="p3">
@@ -58,9 +58,9 @@
 </div>
 </section>
 
-<script type="application/llume+json" id="manifest">{"v":1,"r":{"s":{"heroes":[{"id":12,"name":"Dr. Nice"},{"id":13,"name":"Bombasto"},{"id":14,"name":"Celeritas"},{"id":15,"name":"Magneta"},{"id":16,"name":"RubberMan"},{"id":17,"name":"Dynama"},{"id":18,"name":"Dr. IQ"},{"id":19,"name":"Magma"},{"id":20,"name":"Tornado"}],"topHeroes":[],"selectedHero":null,"editHero":null,"searchResults":[],"newHeroName":""}},"persist":["heroes"],"l":{"en":{"title":"Tour of Heroes","topHeroes":"Top Heroes","myHeroes":"My Heroes","heroSearch":"Hero Search"}},"t":{"--m-p":"#369","--m-s":"#555"}}</script>
+<script type="application/llasm+json" id="manifest">{"v":1,"r":{"s":{"heroes":[{"id":12,"name":"Dr. Nice"},{"id":13,"name":"Bombasto"},{"id":14,"name":"Celeritas"},{"id":15,"name":"Magneta"},{"id":16,"name":"RubberMan"},{"id":17,"name":"Dynama"},{"id":18,"name":"Dr. IQ"},{"id":19,"name":"Magma"},{"id":20,"name":"Tornado"}],"topHeroes":[],"selectedHero":null,"editHero":null,"searchResults":[],"newHeroName":""}},"persist":["heroes"],"l":{"en":{"title":"Tour of Heroes","topHeroes":"Top Heroes","myHeroes":"My Heroes","heroSearch":"Hero Search"}},"t":{"--m-p":"#369","--m-s":"#555"}}</script>
 <script type="module">
-import{l}from"../llume.js";
+import{l}from"../llasm.js";
 const initTop=()=>{const s=l.s();l.u({topHeroes:s.heroes.slice(0,4)});};
 const onRoute=()=>{const p=l.p();if(p.id){const s=l.s(),hero=s.heroes.find(h=>h.id===parseInt(p.id));if(hero)l.u({editHero:{...hero}});}};
 l.h({

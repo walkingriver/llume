@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * LLuMe Skill Installer
- * Copies the LLuMe skill to ~/.cursor/skills/llume/
+ * LLasM Skill Installer
+ * Copies the LLasM skill to ~/.cursor/skills/llasm/
  */
 
 import { existsSync, mkdirSync, cpSync, readdirSync } from 'fs';
@@ -12,17 +12,17 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const srcDir = join(__dirname, '..');
-const destDir = join(homedir(), '.cursor', 'skills', 'llume');
+const destDir = join(homedir(), '.cursor', 'skills', 'llasm');
 
 // Files and directories to copy
 const items = [
   'SKILL.md',
-  'llume.js',
+  'llasm.js',
   'reference',
   'examples'
 ];
 
-console.log('Installing LLuMe skill...\n');
+console.log('Installing LLasM skill...\n');
 
 // Create destination directory
 if (!existsSync(destDir)) {
@@ -45,13 +45,13 @@ for (const item of items) {
 }
 
 console.log(`
-LLuMe skill installed to: ${destDir}
+LLasM skill installed to: ${destDir}
 
 Usage:
 1. Open Cursor
 2. Ask: "Build me a todo app" (or any web page)
-3. The agent will use the LLuMe skill to generate a complete HTML file
+3. The agent will use the LLasM skill to generate a complete HTML file
 4. Save the output and open in browser
 
-The generated HTML references ./llume.js - the agent will copy it alongside your page.
+The generated HTML references ./llasm.js - the agent will copy it alongside your page.
 `);

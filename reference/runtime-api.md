@@ -1,11 +1,11 @@
 # Runtime API
 
-The LLuMe runtime is exposed as `l` via ESM import.
+The LLasM runtime is exposed as `l` via ESM import.
 
 ## Initialization
 
 ```javascript
-import { l } from "./llume.js";
+import { l } from "./llasm.js";
 
 // Register handlers (call once)
 l.h({

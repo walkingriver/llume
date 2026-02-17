@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Simple todo app built with LLuMe">
+<meta name="description" content="Simple todo app built with LLasM">
 <title>Todo App</title>
 </head>
 <body class="p4">
@@ -23,9 +23,9 @@
 <template id="it"><li class="f fi g2 p2 bg r tr"><input type="checkbox" data-m-f="done" data-m-on="change:toggle"><span data-m-f="tx" class="fg"></span><button data-m-on="click:del" data-m-enhance="secondary" class="t2 py1 px2">X</button></li></template>
 <p data-m-if="items.length>0" class="cg"><span class="tb" data-m-bind="remaining"></span> <span data-m-tx="rem"></span></p>
 </main>
-<script type="application/llume+json" id="manifest">{"v":1,"r":{"s":{"items":[],"newTask":"","remaining":0}},"persist":["items"],"l":{"en":{"ti":"Todo App","rem":"remaining"}},"t":{"--m-p":"#10b981"}}</script>
+<script type="application/llasm+json" id="manifest">{"v":1,"r":{"s":{"items":[],"newTask":"","remaining":0}},"persist":["items"],"l":{"en":{"ti":"Todo App","rem":"remaining"}},"t":{"--m-p":"#10b981"}}</script>
 <script type="module">
-import{l}from"../llume.js";
+import{l}from"../llasm.js";
 const upd=()=>{const s=l.s();l.u({remaining:s.items.filter(i=>!i.done).length});};
 l.h({
   add:(e)=>{const s=l.s();if(!s.newTask.trim())return;l.u({items:[...s.items,{id:Date.now(),tx:s.newTask,done:false}],newTask:''});upd();l.t('Added!','ok',1500);},

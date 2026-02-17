@@ -1,15 +1,15 @@
 ---
-name: llume
-description: Generate complete, interactive web pages using the LLuMe framework. Use when the user wants to build a website, web page, web app, landing page, form, dashboard, or any browser-based UI. LLuMe outputs static HTML with embedded manifest and optional handlers - zero build, pure browser ESM.
+name: llasm
+description: Generate complete, interactive web pages using the LLasM framework (LLM Assembly Language). Use when the user wants to build a website, web page, web app, landing page, form, dashboard, or any browser-based UI. LLasM outputs static HTML with embedded manifest and optional handlers - zero build, pure browser ESM.
 ---
 
-# LLuMe Page Generator
+# LLasM Page Generator
 
 Generate complete, production-ready web pages. Output is always a single HTML file that works directly in browsers.
 
 ## Output Structure
 
-Every LLuMe page has exactly three parts:
+Every LLasM page has exactly three parts:
 
 ```html
 <!DOCTYPE html>
@@ -29,11 +29,11 @@ Every LLuMe page has exactly three parts:
   </main>
 
   <!-- 2. MANIFEST: Minified JSON with state, i18n, theme, persistence -->
-  <script type="application/llume+json" id="manifest">{"v":1,"r":{"s":{"items":[]}},"persist":["items"],"l":{"en":{"ti":"Hello"}},"t":{"--m-p":"#0066ff"}}</script>
+  <script type="application/llasm+json" id="manifest">{"v":1,"r":{"s":{"items":[]}},"persist":["items"],"l":{"en":{"ti":"Hello"}},"t":{"--m-p":"#0066ff"}}</script>
 
   <!-- 3. RUNTIME + HANDLERS: Optional, <500 bytes -->
   <script type="module">
-  import{l}from"./llume.js";
+  import{l}from"./llasm.js";
   l.h({save:(e,s,L)=>{L.u({saved:true});L.t('Saved!','ok');}});
   </script>
 </body>
@@ -237,7 +237,7 @@ For complete examples, see:
 
 ## File Output
 
-When generating a page, also copy `llume.js` alongside it:
-- Read `llume.js` from this skill directory
+When generating a page, also copy `llasm.js` alongside it:
+- Read `llasm.js` from this skill directory
 - Write it next to the generated HTML
-- Reference as `./llume.js` in the script import
+- Reference as `./llasm.js` in the script import
