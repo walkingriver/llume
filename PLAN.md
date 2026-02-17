@@ -71,6 +71,15 @@
 
 ### Session: 2026-02-17
 
+**v1.2.1 - Skills Ecosystem Migration**
+
+Migrated from custom npx installer to the [skills.sh](https://skills.sh) ecosystem:
+- ✅ Updated README with `npx skills add walkingriver/llasm` installation
+- ✅ Removed custom `bin/install.js` installer
+- ✅ Updated package.json to align with skills format
+- ✅ Added `AGENTS.md` for agent discovery
+- ✅ Updated SKILL.md frontmatter with version/homepage/repository
+
 **v1.2.0 Released**
 
 Features implemented:

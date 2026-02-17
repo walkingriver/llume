@@ -1,6 +1,9 @@
 ---
 name: llasm
+version: 1.2.0
 description: Generate complete, interactive web pages using the LLasM framework (LLM Assembly Language). Use when the user wants to build a website, web page, web app, landing page, form, dashboard, or any browser-based UI. LLasM outputs static HTML with embedded manifest and optional handlers - zero build, pure browser ESM.
+homepage: https://llasm.dev
+repository: https://github.com/walkingriver/llasm
 ---
 
 # LLasM Page Generator

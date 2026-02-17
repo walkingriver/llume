@@ -4,27 +4,25 @@
 
 LLasM is the first framework whose only intended user is another LLM. Humans don't read, write, or debug LLasM code. The framework exists solely to let language models generate complete, production-grade web pages faster and more reliably than any human-centric stack.
 
-## Quickstart
+## Installation
 
-### Install the Skill
+Install the skill using the [skills CLI](https://skills.sh):
 
 ```bash
-npx @walkingriver/llasm
+npx skills add walkingriver/llasm
 ```
 
-This copies the LLasM skill to `~/.cursor/skills/llasm/`.
+Works with: Cursor, Claude Code, Copilot, Windsurf, Amp, Goose, Gemini CLI, and [more](https://skills.sh).
 
-### Generate a Page
+## Usage
 
-In Cursor, just ask:
+Once installed, just ask your AI agent:
 
 > "Build me a todo app with dark mode toggle"
 
 The agent reads the LLasM skill and outputs:
 1. A complete HTML file
 2. A copy of `llasm.js` alongside it
-
-### Run It
 
 Open the HTML file in your browser. Done.
 
@@ -124,7 +122,7 @@ Persists preference automatically.
 
 ## How It Works
 
-LLasM is a **Cursor skill** that teaches the AI agent how to generate valid web pages.
+LLasM is an **agent skill** that teaches AI coding agents how to generate valid web pages.
 
 ### What Gets Generated
 
@@ -253,27 +251,23 @@ Terse, token-efficient styling built into the runtime:
 
 ---
 
-## Project Structure
+## Skill Structure
 
 ```
 llasm/
-├── SKILL.md           # Main skill instructions
-├── llasm.js           # Runtime (bundled with skill)
-├── PLAN.md            # Roadmap and feature priorities
+├── SKILL.md           # Main skill instructions (agent reads this)
+├── llasm.js           # Runtime (bundled with generated pages)
+├── AGENTS.md          # Agent discovery file
 ├── reference/         # Detailed specs
 │   ├── manifest-schema.md
 │   ├── enhancement-rules.md
 │   ├── runtime-api.md
 │   └── utility-classes.md
-├── examples/          # Few-shot learning examples
-│   ├── features-demo.html
-│   ├── todo-app.html
-│   ├── tour-of-heroes.html
-│   ├── landing-page.html
-│   ├── contact-form.html
-│   └── minimal-card.html
-└── bin/
-    └── install.js     # npx installer
+└── examples/          # Few-shot learning examples
+    ├── features-demo.html
+    ├── todo-app.html
+    ├── tour-of-heroes.html
+    └── ...
 ```
 
 ---
@@ -292,6 +286,12 @@ const html = renderStatic(manifest);
 ```
 
 ---
+
+## Links
+
+- **Website:** [llasm.dev](https://llasm.dev)
+- **Skills Directory:** [skills.sh/walkingriver/llasm](https://skills.sh/walkingriver/llasm)
+- **GitHub:** [github.com/walkingriver/llasm](https://github.com/walkingriver/llasm)
 
 ## License
 

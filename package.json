@@ -1,28 +1,28 @@
 {
   "name": "@walkingriver/llasm",
   "version": "1.2.0",
-  "description": "LLasM: LLM Assembly Language - web framework skill for Cursor",
+  "description": "LLasM: LLM Assembly Language - AI agent skill for generating zero-build web applications",
   "type": "module",
-  "bin": {
-    "llasm": "./bin/install.js"
-  },
   "files": [
-    "bin/",
     "examples/",
     "reference/",
     "SKILL.md",
+    "AGENTS.md",
     "llasm.js"
   ],
   "keywords": [
     "llasm",
     "llm",
     "ai",
+    "agent-skills",
     "cursor",
+    "claude-code",
+    "copilot",
+    "windsurf",
     "skill",
     "web",
     "framework",
-    "zero-build",
-    "assembly"
+    "zero-build"
   ],
   "author": "Michael Callaghan",
   "license": "MIT",
