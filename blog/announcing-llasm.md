@@ -88,7 +88,7 @@ What if we designed a framework where:
 - **Every API is optimized for token efficiency**, not human memory
 - **Every pattern is unambiguous**, eliminating hallucination surface
 - **Every output is complete**, requiring no build step or toolchain
-- **Every page is SEO-ready**, with semantic HTML that works without JavaScript
+- **Every page is SEO-ready**, with semantic HTML that works with or without JavaScript
 
 That's LLasM.
 
