@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://llasm.dev/schemas/manifest.json",
+  "title": "LLasM Manifest",
+  "description": "Schema for application/llasm+json manifest blocks",
+  "type": "object",
+  "properties": {
+    "v": {
+      "type": "integer",
+      "const": 1,
+      "description": "Schema version (always 1)"
+    },
+    "r": {
+      "type": "object",
+      "description": "Runtime configuration",
+      "properties": {
+        "s": {
+          "type": "object",
+          "description": "Initial state object",
+          "additionalProperties": true
+        }
+      },
+      "required": ["s"]
+    },
+    "persist": {
+      "type": "array",
+      "description": "State keys to persist in localStorage",
+      "items": {
+        "type": "string"
+      }
+    },
+    "l": {
+      "type": "object",
+      "description": "Locales: {locale: {key: text}}",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    },
+    "t": {
+      "type": "object",
+      "description": "Theme: CSS custom properties",
+      "propertyNames": {
+        "pattern": "^--"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "e": {
+      "type": "object",
+      "description": "Events configuration (reserved)",
+      "additionalProperties": true
+    },
+    "b": {
+      "type": "object",
+      "description": "Bindings configuration (reserved)",
+      "additionalProperties": true
+    }
+  },
+  "required": ["v"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "v": 1,
+      "r": {
+        "s": {
+          "count": 0,
+          "items": []
+        }
+      },
+      "persist": ["items"],
+      "l": {
+        "en": {
+          "title": "Hello",
+          "save": "Save"
+        },
+        "es": {
+          "title": "Hola",
+          "save": "Guardar"
+        }
+      },
+      "t": {
+        "--m-p": "#0066ff",
+        "--m-s": "#6c757d",
+        "--m-bg": "#ffffff"
+      }
+    }
+  ]
+}
