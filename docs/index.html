@@ -12,9 +12,9 @@
   <!-- Header -->
   <header class="f fb fi px3 py2 stk t0 l0 r0 z3 bw sh">
     <a href="#" class="t5 tb c1" style="text-decoration:none">⚡ LLasM</a>
-    <nav class="f g3 fi">
-      <a href="#features" class="cg" style="text-decoration:none">Features</a>
-      <a href="#how" class="cg" style="text-decoration:none">How It Works</a>
+    <nav class="f g3 fi fw">
+      <a href="#features" class="cg sm:dn" style="text-decoration:none">Features</a>
+      <a href="#how" class="cg sm:dn" style="text-decoration:none">How It Works</a>
       <a href="#examples" class="cg" style="text-decoration:none">Examples</a>
       <a href="https://github.com/walkingriver/llasm" class="cg" style="text-decoration:none">GitHub</a>
       <button data-m-enhance="darkmode secondary" class="px2 py1 r t2">Theme</button>
@@ -23,9 +23,12 @@
 
   <!-- Hero -->
   <section class="rel" style="margin-top:60px">
-    <img src="img/hero.jpg" alt="Abstract AI visualization" class="wf db" style="height:400px;object-fit:cover;opacity:0.3">
+    <picture>
+      <source srcset="img/hero.webp" type="image/webp">
+      <img src="img/hero.jpg" alt="Abstract AI visualization" width="1920" height="640" class="wf db" style="height:min(400px,50vh);object-fit:cover;opacity:0.3">
+    </picture>
     <div class="abs t0 l0 r0 b0 f fc fj fi tc px3">
-      <h1 class="t7 tb c1" style="font-size:3.5rem;line-height:1.1">
+      <h1 class="t7 tb c1" style="font-size:clamp(2rem,8vw,3.5rem);line-height:1.1">
         The Web Framework for<br><span class="cg">AI Coding Agents</span>
       </h1>
     </div>
@@ -179,9 +182,9 @@
       <h2 class="t6 tb c1 py2">Ready to Try It?</h2>
       <p class="cg py2">Install the skill and ask your AI agent to build something</p>
       <code class="db p3 bg r t3 mxa" style="font-family:monospace;max-width:400px">npx skills add walkingriver/llasm</code>
-      <div class="f fj g3 py4">
+      <div class="f fj g3 py4 fw">
         <a href="https://github.com/walkingriver/llasm" class="px4 py2 b1 cw r tb" style="text-decoration:none">View on GitHub</a>
-        <a href="https://github.com/walkingriver/llasm/tree/main/examples" class="px4 py2 bd r tb" style="text-decoration:none">See Examples</a>
+        <a href="https://github.com/walkingriver/llasm/tree/main/examples" class="px4 py2 bd r tb" style="text-decoration:none;color:#1a1a1a">See Examples</a>
       </div>
     </section>
   </main>

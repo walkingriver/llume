@@ -98,7 +98,7 @@ body{background:var(--m-bg);color:var(--m-fg);transition:background .3s,color .3
 .cp{cursor:pointer}.cn{cursor:not-allowed}
 .pe{pointer-events:none}.pa{pointer-events:auto}
 .us{user-select:none}
-.tr{transition:all .2s ease}.tr3{transition:all .3s ease}.tr5{transition:all .5s ease}
+.tr{transition:transform .2s ease,opacity .2s ease}.tr3{transition:transform .3s ease,opacity .3s ease}.tr5{transition:transform .5s ease,opacity .5s ease}
 .spin{animation:m-spin 1s linear infinite}.pulse{animation:m-pulse 2s ease-in-out infinite}.fade{animation:m-fade .3s ease}
 a{color:var(--m-p);text-decoration:none}a:hover{text-decoration:underline}
 button,input,select,textarea{font:inherit}

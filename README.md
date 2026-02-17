@@ -293,6 +293,64 @@ const html = renderStatic(manifest);
 - **Skills Directory:** [skills.sh/walkingriver/llasm](https://skills.sh/walkingriver/llasm)
 - **GitHub:** [github.com/walkingriver/llasm](https://github.com/walkingriver/llasm)
 
+---
+
+## Deployment & Security Headers
+
+When deploying LLasM pages to production, configure your server to send these security headers:
+
+| Header | Value | Purpose |
+|--------|-------|---------|
+| `Content-Security-Policy` | `default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'` | Prevent XSS attacks |
+| `Strict-Transport-Security` | `max-age=31536000; includeSubDomains` | Force HTTPS |
+| `X-Content-Type-Options` | `nosniff` | Prevent MIME sniffing |
+| `X-Frame-Options` | `DENY` | Prevent clickjacking |
+| `Cross-Origin-Opener-Policy` | `same-origin` | Cross-origin isolation |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` | Control referrer info |
+
+### Netlify (`_headers` file)
+
+```
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Cross-Origin-Opener-Policy: same-origin
+  Referrer-Policy: strict-origin-when-cross-origin
+```
+
+### Vercel (`vercel.json`)
+
+```json
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'" },
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" }
+      ]
+    }
+  ]
+}
+```
+
+### Apache (`.htaccess`)
+
+```apache
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "DENY"
+Header set Cross-Origin-Opener-Policy "same-origin"
+```
+
+---
+
 ## License
 
 MIT
