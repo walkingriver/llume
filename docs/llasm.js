@@ -4,7 +4,7 @@
  * Target: ≤9KB gzipped
  */
 const D=document,W=window,Q=(s,c=D)=>c.querySelector(s),A=(s,c=D)=>c.querySelectorAll(s);
-let _s={},_l={},_t={},_ln='en',_h={},_m=null,_p={},_rp={},_ps={},_ol=!navigator.onLine;
+let _s={},_l={},_t={},_ln='en',_h={},_m=null,_p={},_rp={},_ps={},_ol=!navigator.onLine,_origTx={};
 
 // Proxy-based reactive state
 const px=(o,cb)=>{
@@ -96,11 +96,53 @@ const tx=(k)=>{
 // Apply i18n to element
 const ti=(el)=>{
   const k=el.dataset.mTx;
-  if(k)el.textContent=tx('@'+k);
+  if(!k)return;
+  const m=_l[_ln]||{};
+  if(m[k])el.textContent=m[k];
+  else if(_ln==='en'&&_origTx[k])el.textContent=_origTx[k];
 };
 
 // Apply all i18n
 const ai=()=>A('[data-m-tx]').forEach(ti);
+
+// Capture original English text from HTML (for SEO-friendly i18n)
+const captureTx=()=>{
+  A('[data-m-tx]').forEach(el=>{
+    const k=el.dataset.mTx;
+    if(k&&!_origTx[k])_origTx[k]=el.textContent;
+  });
+};
+
+// Restore original English text
+const restoreTx=()=>{
+  A('[data-m-tx]').forEach(el=>{
+    const k=el.dataset.mTx;
+    if(k&&_origTx[k])el.textContent=_origTx[k];
+  });
+};
+
+// Load locale file and apply translations
+const loadLocale=async(ln)=>{
+  if(ln==='en'){
+    _ln='en';
+    restoreTx();
+    return;
+  }
+  // Determine file path: same directory as current page, named {page}.{locale}.json
+  const path=location.pathname;
+  const base=path.endsWith('/')?path+'index':path.replace(/\.html$/,'');
+  const url=base+'.'+ln+'.json';
+  try{
+    const res=await fetch(url);
+    if(!res.ok)throw new Error('Locale file not found');
+    const data=await res.json();
+    _l[ln]=data;
+    _ln=ln;
+    ai();
+  }catch(e){
+    console.warn('LLasM: Could not load locale',ln,e);
+  }
+};
 
 // Utility CSS classes (Tailwind-lite, maximally terse)
 const UC=`
@@ -637,6 +679,7 @@ const mn=(m)=>{
   // #region agent log
   _dbg('llasm.js:mn-afterld','after ld()',{cartAfter:_s.cart},'D');
   // #endregion
+  captureTx();
   ai();
   A('[data-m-enhance]').forEach(ae);
   A('[data-m-on]').forEach(oe);
@@ -689,6 +732,7 @@ const l={
   v:vs,
   vf:vf,
   r:(ln)=>{_ln=ln;ai();},
+  locale:loadLocale,
   q:Q,
   qa:A,
   s:()=>JSON.parse(JSON.stringify(_s)),

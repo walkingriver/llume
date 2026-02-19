@@ -69,6 +69,11 @@
       <a href="blog.html" class="cg tdn">Blog</a>
       <a href="https://github.com/walkingriver/llasm" class="cg tdn">GitHub</a>
       <button data-m-enhance="darkmode secondary" class="px2 py1 r t2">Theme</button>
+      <select data-m-on="change:setLocale" class="px2 py1 r t2 bg" aria-label="Language">
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="fr">FR</option>
+      </select>
     </nav>
   </header>
 
@@ -80,130 +85,130 @@
     </picture>
     <div class="abs t0 l0 r0 b0 f fc fj fi tc px3">
       <h1 class="t7 tb c1 hero-title">
-        LLM Assembly Language<br><span class="cg">Agent Skills for the Web</span>
+        <span data-m-tx="hero_title">LLM Assembly Language</span><br><span class="cg" data-m-tx="hero_sub">Agent Skills for the Web</span>
       </h1>
     </div>
   </section>
 
   <main class="xw4 mxa px3 py5">
     <section class="tc py3">
-      <p class="t4 cg mxa py3 xw2">
+      <p class="t4 cg mxa py3 xw2" data-m-tx="intro_text">
         Every framework ever created is an abstraction to help humans build software.
-        LLMs don't need abstractions. They need <strong class="cb">rules</strong>.
+        LLMs don't need abstractions. They need rules.
       </p>
       <div class="f fj g2 fw py3">
         <code class="p2 bg r t3 mono">npx skills add walkingriver/llasm</code>
       </div>
-      <p class="t2 cg ti">(Coming soon to skills.sh)</p>
-      <p class="t2 cg py1">Works with Cursor, Claude Code, Copilot, Windsurf, and more</p>
+      <p class="t2 cg ti" data-m-tx="coming_soon">(Coming soon to skills.sh)</p>
+      <p class="t2 cg py1" data-m-tx="works_with">Works with Cursor, Claude Code, Copilot, Windsurf, and more</p>
       <a href="blog.html" class="f fi fj g2 b1 cw p2 px4 r tdn tb mt3 dib">
-        <span>Read the announcement</span>
+        <span data-m-tx="read_announcement">Read the announcement</span>
         <span>→</span>
       </a>
     </section>
 
     <!-- The Problem -->
     <section class="py4">
-      <h2 class="t6 tb tc c1 py3">The Problem</h2>
-      <p class="tc cg py2 mxa xw2">Ask an LLM to build the same feature twice in React or Angular, and you'll get different implementations each time. Flexibility creates ambiguity. Ambiguity creates hallucination.</p>
+      <h2 class="t6 tb tc c1 py3" data-m-tx="problem_title">The Problem</h2>
+      <p class="tc cg py2 mxa xw2" data-m-tx="problem_text">Ask an LLM to build the same feature twice in React or Angular, and you'll get different implementations each time. Flexibility creates ambiguity. Ambiguity creates hallucination.</p>
     </section>
 
     <!-- The Solution -->
     <section class="py4">
-      <h2 class="t6 tb tc c1 py3">The Solution</h2>
-      <p class="tc cg py2 mxa xw2">LLasM is an <strong class="cb">agent skill</strong>—a set of instructions that AI coding agents read and follow. One way to handle events. One way to bind state. One manifest format. No choices means no hallucination.</p>
+      <h2 class="t6 tb tc c1 py3" data-m-tx="solution_title">The Solution</h2>
+      <p class="tc cg py2 mxa xw2" data-m-tx="solution_text">LLasM is an agent skill—a set of instructions that AI coding agents read and follow. One way to handle events. One way to bind state. One manifest format. No choices means no hallucination.</p>
       <div class="g gc3 g3 sm:gc1 py3">
         <div class="p3 bg r">
-          <div class="t5 tb c1">A Skill File</div>
-          <p class="cg py2">SKILL.md contains the rules. Install it, and your AI agent knows exactly how to generate valid output.</p>
+          <div class="t5 tb c1" data-m-tx="skill_file_title">A Skill File</div>
+          <p class="cg py2" data-m-tx="skill_file_text">SKILL.md contains the rules. Install it, and your AI agent knows exactly how to generate valid output.</p>
         </div>
         <div class="p3 bg r">
-          <div class="t5 tb c1">A Tiny Runtime</div>
-          <p class="cg py2">llasm.js (~9KB gzipped) handles reactivity, routing, i18n, and progressive enhancements. Not a framework—just glue.</p>
+          <div class="t5 tb c1" data-m-tx="runtime_title">A Tiny Runtime</div>
+          <p class="cg py2" data-m-tx="runtime_text">llasm.js (~9KB gzipped) handles reactivity, routing, i18n, and progressive enhancements. Not a framework—just glue.</p>
         </div>
         <div class="p3 bg r">
-          <div class="t5 tb c1">Zero Build</div>
-          <p class="cg py2">No npm. No webpack. No Vite. The "build step" is the LLM generating HTML. Open it in a browser. Done.</p>
+          <div class="t5 tb c1" data-m-tx="zero_build_title">Zero Build</div>
+          <p class="cg py2" data-m-tx="zero_build_text">No npm. No webpack. No Vite. The "build step" is the LLM generating HTML. Open it in a browser. Done.</p>
         </div>
       </div>
     </section>
 
     <!-- Why Zero Build -->
     <section class="py5">
-      <h2 class="t6 tb tc c1 py3">Why Zero Build?</h2>
+      <h2 class="t6 tb tc c1 py3" data-m-tx="why_zero_build_title">Why Zero Build?</h2>
       <div class="mxa xw2">
-        <p class="cg py2">Every modern web framework assumes a build step: npm install, configure bundler, transpile TypeScript, tree-shake dependencies, optimize for production. That toolchain exists because humans need abstractions.</p>
-        <p class="cg py2">But when an LLM generates code, it can output the final format directly. No transpilation needed—it writes ES modules. No bundling needed—it inlines what's required. No tree-shaking needed—it only generates what's used.</p>
-        <p class="cg py2 tb cb">The build step was always a human accommodation. Remove the human, remove the build.</p>
-        <p class="cg py2">LLasM will never require npm, webpack, Vite, Babel, or any CLI. It's pure ESM that runs directly in browsers. The "build step" is the LLM generating the HTML.</p>
+        <p class="cg py2" data-m-tx="why_zero_build_p1">Every modern web framework assumes a build step: npm install, configure bundler, transpile TypeScript, tree-shake dependencies, optimize for production. That toolchain exists because humans need abstractions.</p>
+        <p class="cg py2" data-m-tx="why_zero_build_p2">But when an LLM generates code, it can output the final format directly. No transpilation needed—it writes ES modules. No bundling needed—it inlines what's required. No tree-shaking needed—it only generates what's used.</p>
+        <p class="cg py2 tb cb" data-m-tx="why_zero_build_p3">The build step was always a human accommodation. Remove the human, remove the build.</p>
+        <p class="cg py2" data-m-tx="why_zero_build_p4">LLasM will never require npm, webpack, Vite, Babel, or any CLI. It's pure ESM that runs directly in browsers. The "build step" is the LLM generating the HTML.</p>
       </div>
     </section>
 
     <!-- Features -->
     <section id="features" class="py5">
-      <h2 class="t6 tb tc c1 py3">What the Skill Teaches</h2>
-      <p class="tc cg py2">The rules cover the "hard 80%" of web UI</p>
+      <h2 class="t6 tb tc c1 py3" data-m-tx="features_title">What the Skill Teaches</h2>
+      <p class="tc cg py2" data-m-tx="features_sub">The rules cover the "hard 80%" of web UI</p>
       
       <div class="g gc2 g2 py3 sm:gc1">
         <div class="p3 bg r f g2 fi">
           <span class="t4">🎛️</span>
-          <div><span class="tb">Event Binding</span><br><code class="t1 cg">data-m-on="click:save"</code></div>
+          <div><span class="tb" data-m-tx="feat_events">Event Binding</span><br><code class="t1 cg">data-m-on="click:save"</code></div>
         </div>
         <div class="p3 bg r f g2 fi">
           <span class="t4">🔔</span>
-          <div><span class="tb">Toast Notifications</span><br><code class="t1 cg">L.t('Saved!', 'ok')</code></div>
+          <div><span class="tb" data-m-tx="feat_toast">Toast Notifications</span><br><code class="t1 cg">L.t('Saved!', 'ok')</code></div>
         </div>
         <div class="p3 bg r f g2 fi">
           <span class="t4">💾</span>
-          <div><span class="tb">LocalStorage Persistence</span><br><code class="t1 cg">"persist":{"items":"local"}</code></div>
+          <div><span class="tb" data-m-tx="feat_persist">LocalStorage Persistence</span><br><code class="t1 cg">"persist":{"items":"local"}</code></div>
         </div>
         <div class="p3 bg r f g2 fi">
           <span class="t4">🌙</span>
-          <div><span class="tb">Dark Mode</span><br><code class="t1 cg">data-m-enhance="darkmode"</code></div>
+          <div><span class="tb" data-m-tx="feat_dark">Dark Mode</span><br><code class="t1 cg">data-m-enhance="darkmode"</code></div>
         </div>
         <div class="p3 bg r f g2 fi">
           <span class="t4">🌐</span>
-          <div><span class="tb">i18n</span><br><code class="t1 cg">data-m-tx="key"</code></div>
+          <div><span class="tb" data-m-tx="feat_i18n">i18n</span><br><code class="t1 cg">data-m-tx="key"</code></div>
         </div>
         <div class="p3 bg r f g2 fi">
           <span class="t4">🎨</span>
-          <div><span class="tb">Theming</span><br><code class="t1 cg">{"--m-p":"#0066ff"}</code></div>
+          <div><span class="tb" data-m-tx="feat_theme">Theming</span><br><code class="t1 cg">{"--m-p":"#0066ff"}</code></div>
         </div>
         <div class="p3 bg r f g2 fi">
           <span class="t4">📋</span>
-          <div><span class="tb">Modals & Tabs</span><br><code class="t1 cg">data-m-enhance="modal"</code></div>
+          <div><span class="tb" data-m-tx="feat_modals">Modals & Tabs</span><br><code class="t1 cg">data-m-enhance="modal"</code></div>
         </div>
         <div class="p3 bg r f g2 fi">
           <span class="t4">📡</span>
-          <div><span class="tb">Offline Detection</span><br><code class="t1 cg">data-m-if="_offline"</code></div>
+          <div><span class="tb" data-m-tx="feat_offline">Offline Detection</span><br><code class="t1 cg">data-m-if="_offline"</code></div>
         </div>
       </div>
     </section>
 
     <!-- How It Works -->
     <section id="how" class="py5">
-      <h2 class="t6 tb tc c1 py3">How It Works</h2>
+      <h2 class="t6 tb tc c1 py3" data-m-tx="how_title">How It Works</h2>
       
       <div class="py3">
         <div class="f g3 fi py3 sm:fc">
           <div class="p3 b1 cw r tc step-num">1</div>
           <div>
-            <div class="tb t4">Install the Skill</div>
-            <p class="cg py1">Run <code>npx skills add walkingriver/llasm</code> to teach your AI agent the LLasM instruction set. <span class="ti">(Coming soon)</span></p>
+            <div class="tb t4" data-m-tx="step1_title">Install the Skill</div>
+            <p class="cg py1" data-m-tx="step1_text">Run npx skills add walkingriver/llasm to teach your AI agent the LLasM instruction set. (Coming soon)</p>
           </div>
         </div>
         <div class="f g3 fi py3 sm:fc">
           <div class="p3 b1 cw r tc step-num">2</div>
           <div>
-            <div class="tb t4">Ask for What You Want</div>
-            <p class="cg py1">"Build me a todo app with dark mode and persistence." The agent reads the skill and generates valid output.</p>
+            <div class="tb t4" data-m-tx="step2_title">Ask for What You Want</div>
+            <p class="cg py1" data-m-tx="step2_text">"Build me a todo app with dark mode and persistence." The agent reads the skill and generates valid output.</p>
           </div>
         </div>
         <div class="f g3 fi py3 sm:fc">
           <div class="p3 b1 cw r tc step-num">3</div>
           <div>
-            <div class="tb t4">Open in Browser</div>
-            <p class="cg py1">You get a complete HTML file + llasm.js. No npm install. No build step. Just open it.</p>
+            <div class="tb t4" data-m-tx="step3_title">Open in Browser</div>
+            <p class="cg py1" data-m-tx="step3_text">You get a complete HTML file + llasm.js. No npm install. No build step. Just open it.</p>
           </div>
         </div>
       </div>
@@ -211,8 +216,8 @@
 
     <!-- Code Example -->
     <section id="examples" class="py5">
-      <h2 class="t6 tb tc c1 py3">The Output Format</h2>
-      <p class="tc cg py2">Every LLasM page has exactly three parts</p>
+      <h2 class="t6 tb tc c1 py3" data-m-tx="output_title">The Output Format</h2>
+      <p class="tc cg py2" data-m-tx="output_sub">Every LLasM page has exactly three parts</p>
       
       <div class="bg r p3 oxa">
         <pre class="t2 mono pre-code"><code>&lt;!DOCTYPE html&gt;
@@ -239,23 +244,23 @@
 
     <!-- Live Demo -->
     <section class="py5">
-      <h2 class="t6 tb tc c1 py3">Live Demo</h2>
-      <p class="tc cg py2">This entire site is built with LLasM</p>
+      <h2 class="t6 tb tc c1 py3" data-m-tx="demo_title">Live Demo</h2>
+      <p class="tc cg py2" data-m-tx="demo_sub">This entire site is built with LLasM</p>
       
       <div class="bg r p4 tc">
-        <p class="py2">Current count: <span class="tb t5 c1" data-m-bind="count">0</span></p>
+        <p class="py2"><span data-m-tx="demo_count">Current count:</span> <span class="tb t5 c1" data-m-bind="count">0</span></p>
         <div class="f fj g2">
           <button data-m-on="click:dec" data-m-enhance="secondary ripple" class="px3 py2 r">−</button>
           <button data-m-on="click:inc" data-m-enhance="primary ripple" class="px3 py2 r">+</button>
         </div>
-        <p class="t2 cg py2">Click the buttons — state is reactive</p>
+        <p class="t2 cg py2" data-m-tx="demo_hint">Click the buttons — state is reactive</p>
       </div>
     </section>
 
     <!-- Live Examples -->
     <section class="py5">
-      <h2 class="t6 tb tc c1 py3">Live Examples</h2>
-      <p class="tc cg py2">Click to see working demos built with LLasM</p>
+      <h2 class="t6 tb tc c1 py3" data-m-tx="examples_title">Live Examples</h2>
+      <p class="tc cg py2" data-m-tx="examples_sub">Click to see working demos built with LLasM</p>
       
       <div class="g gc3 g3 py3 sm:gc1">
         <a href="examples/todo-app.html" class="bg r2 sh p3 tdn cb">
@@ -344,20 +349,20 @@
 
     <!-- CTA -->
     <section class="py5 tc">
-      <h2 class="t6 tb c1 py2">Teach Your AI Agent</h2>
-      <p class="cg py2">Install the skill, then ask for what you want</p>
+      <h2 class="t6 tb c1 py2" data-m-tx="cta_title">Teach Your AI Agent</h2>
+      <p class="cg py2" data-m-tx="cta_sub">Install the skill, then ask for what you want</p>
       <code class="db p3 bg r t3 mxa mono xw3">npx skills add walkingriver/llasm</code>
-      <p class="t2 cg ti py2">(Coming soon to skills.sh)</p>
+      <p class="t2 cg ti py2" data-m-tx="cta_coming_soon">(Coming soon to skills.sh)</p>
       <div class="f fj g3 py4 fw">
-        <a href="https://github.com/walkingriver/llasm" class="px4 py2 b1 cw r tb tdn">View on GitHub</a>
+        <a href="https://github.com/walkingriver/llasm" class="px4 py2 b1 cw r tb tdn" data-m-tx="cta_github">View on GitHub</a>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
   <footer class="tc py4 cg t2 bdt">
-    <p>LLasM — LLM Assembly Language</p>
-    <p class="py1">Orchestrated by <a href="https://x.com/mikecallaghan" class="c1">Michael D. Callaghan</a></p>
+    <p data-m-tx="footer_tagline">LLasM — LLM Assembly Language</p>
+    <p class="py1"><span data-m-tx="footer_by">Orchestrated by</span> <a href="https://x.com/mikecallaghan" class="c1">Michael D. Callaghan</a></p>
     <p class="py2">
       <a href="https://github.com/walkingriver/llasm" class="cg">GitHub</a> · 
       <a href="https://skills.sh" class="cg">skills.sh</a> ·
@@ -372,10 +377,11 @@
 
   <!-- Handlers -->
   <script type="module">
-    import{l}from"./llasm.js?v=w4k8n3m6";
+    import{l}from"./llasm.js?v=m3n7q5r8";
     l.h({
       inc:(e,s,L)=>L.u({count:s.count+1}),
-      dec:(e,s,L)=>L.u({count:Math.max(0,s.count-1)})
+      dec:(e,s,L)=>L.u({count:Math.max(0,s.count-1)}),
+      setLocale:(e,s,L)=>L.locale(e.target.value)
     });
   </script>
 </body>
