@@ -32,9 +32,11 @@ I've been building software professionally since 1995, and as a hobby since 1981
 
 The ecosystems changed constantly, but the goal was always the same: *building a better app faster*.
 
-I've seen my share of fads come and go: ActiveX controls, DHTML, ColdFusion, Flash/Flex, Silverlight, GWT, Backbone, Knockout, Ember. I coded classic VBScript ASP sites, then rode the .NET wave through Web Forms and MVC. I became a JavaScript developer with AngularJS, then Angular (the rewrite that broke everything), worked extensively with Ionic, dabbled in React, and tried Flutter.
+I've seen my share of fads come and go: ActiveX controls, DHTML, ColdFusion, Flash/Flex, Silverlight, GWT, jQuery, Backbone, Knockout, Ember. I coded classic VBScript ASP sites, then rode the .NET wave through Web Forms and MVC. I became a JavaScript developer with AngularJS, then Angular (the rewrite that broke everything), worked extensively with Ionic, dabbled in React, and tried Flutter.
 
-Every one of these frameworks shared a common trait: they were designed to be *flexible*. They offered multiple ways to solve problems. They were *opinionated*—but opinionated in the sense of "we think THIS is the best way," while still allowing you to do it YOUR way if you disagreed.
+Every single one of them—from jQuery to React to Flutter—is an *abstraction*. The primary purpose of any library or framework is to make it easier for developers to build software. Humans often need such abstractions. Machines don't.
+
+And every one of these frameworks shared another common trait: they were designed to be *flexible*. They offered multiple ways to solve problems. They were *opinionated*—but opinionated in the sense of "we think THIS is the best way," while still allowing you to do it YOUR way if you disagreed.
 
 The problem? Flexibility creates ambiguity. Ambiguity creates bugs. And when the author isn't a human who can reason through ambiguity—when the author is an LLM that will confidently hallucinate a plausible-but-wrong approach—flexibility becomes a liability.
 
@@ -101,6 +103,7 @@ LLasM is distributed as an **agent skill**—a set of instructions that AI codin
 ```bash
 npx skills add walkingriver/llasm
 ```
+*(Coming soon to skills.sh)*
 
 Once installed, just ask your AI agent to build something:
 
@@ -109,7 +112,7 @@ Once installed, just ask your AI agent to build something:
 The agent reads the LLasM skill and outputs:
 
 1. **A complete HTML file** with embedded state, i18n, and theming
-2. **A copy of `llasm.js`** (~8KB runtime) alongside it
+2. **A copy of `llasm.js`** (~9KB gzipped) alongside it
 
 Open the HTML in a browser. Done. No npm install. No webpack. No Vite. No build step. Ever.
 
@@ -145,7 +148,7 @@ Notice:
 - **No framework boilerplate**, no imports to configure
 - **Works without JavaScript** for SEO and accessibility
 
-The runtime handles reactivity, routing, i18n, theming, persistence, and progressive enhancements (modals, tabs, toasts, dark mode, etc.)—all in ~8KB gzipped.
+The runtime handles reactivity, routing, i18n, theming, persistence, and progressive enhancements (modals, tabs, toasts, dark mode, etc.)—all in ~9KB gzipped.
 
 ---
 
@@ -159,7 +162,7 @@ Want to handle a button click? There's one way: `data-m-on="click:handlerName"`.
 
 Want to show a toast? There's one way: `L.t('message', 'type')`.
 
-Want to persist state? There's one way: add the key to `"persist":[]` in the manifest.
+Want to persist state? There's one way: add the key to `"persist":{}` in the manifest with its storage tier.
 
 This rigidity isn't a limitation—it's the feature. Every decision that's already made is a decision the LLM can't get wrong.
 
@@ -215,7 +218,7 @@ LLasM covers the "hard 80%" of web UI:
 | Routing | Hash-based with `data-m-route="/path/:id"` |
 | Data binding | `data-m-bind="stateKey"` |
 | List rendering | `data-m-tpl` + `data-m-key` |
-| Persistence | `"persist":["key1"]` saves to localStorage |
+| Persistence | `"persist":{"key":"local"}` saves to localStorage |
 | Offline detection | `data-m-if="_offline"` |
 
 Utility classes cover flex, grid, spacing, typography, colors, shadows, animations, and responsive breakpoints—all injected by the runtime, no CSS file needed.
@@ -254,11 +257,35 @@ LLasM is my answer: if LLMs are writing the code, optimize for LLMs. Let JavaScr
 
 ---
 
+## Why Stop at HTML/JS/CSS?
+
+If LLMs don't need human-readable abstractions, why stop here? Why not go deeper—all the way to WebAssembly?
+
+We could. WASM lets you compile C, Rust, or Go directly to bytecode that runs in the browser. No JavaScript required. Maximum performance. If we're truly optimizing for machines writing code for machines to execute, why not cut out the middleman entirely?
+
+But here's what we'd lose:
+
+- **View Source**: The web's original superpower—inspect any page and learn from it
+- **Progressive enhancement**: HTML works without JavaScript; WASM doesn't
+- **Accessibility**: Screen readers understand semantic HTML; they can't parse WASM blobs
+- **SEO**: Search engines index text content, not binary modules
+- **Deep linking**: URLs that point to specific content, not opaque application states
+- **The DOM**: CSS selectors, event delegation, browser dev tools—all built around HTML
+- **Universal deployment**: HTML runs everywhere; WASM support varies
+- **Instant loading**: Text compresses better and streams; binaries must fully download
+
+HTML, CSS, and JavaScript aren't just "good enough"—they're the native language of the web. They're built into every browser on every device. They're what makes the web *the web* rather than just another app platform.
+
+And as Scott Hanselman observed fifteen years ago: JavaScript is already assembly language. We don't need to go lower. We just need to write it differently.
+
+---
+
 ## Try It
 
 ```bash
 npx skills add walkingriver/llasm
 ```
+*(Coming soon to skills.sh)*
 
 Then ask your AI agent:
 
@@ -272,7 +299,7 @@ That's LLasM.
 
 ## Links
 
-- **Website**: [llasm.dev](https://llasm.dev) *(coming soon)*
+- **Website**: [llasm.dev](https://llasm.dev)
 - **GitHub**: [github.com/walkingriver/llasm](https://github.com/walkingriver/llasm)
 - **Skills Directory**: [skills.sh](https://skills.sh)
 
