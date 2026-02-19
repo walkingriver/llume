@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Order Confirmation - Michael Callaghan Books">
+<meta name="theme-color" content="#0066ff">
+<title>Order Confirmed - Michael Callaghan Books</title>
+<script>try{var d=localStorage.getItem('llasm-dark');if(d==='true'||(d===null&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark');}catch(e){}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--m-p:#0066ff;--m-s:#6c757d;--m-ok:#28a745;--m-err:#dc3545}
+body{margin:0;font-family:system-ui,sans-serif;background:var(--m-bg,#fff);color:var(--m-fg,#212529)}
+.f{display:flex}.fc{flex-direction:column}.fi{align-items:center}.fj{justify-content:center}.fb{justify-content:space-between}.fg{flex-grow:1}
+.g{display:grid}
+.g1{gap:.25rem}.g2{gap:.5rem}.g3{gap:1rem}.g4{gap:1.5rem}
+.p2{padding:.5rem}.p3{padding:1rem}.p4{padding:1.5rem}.px3{padding-inline:1rem}.py2{padding-block:.5rem}.py3{padding-block:1rem}.py4{padding-block:1.5rem}
+.mxa{margin-inline:auto}.xw3{max-width:900px}
+.t1{font-size:.75rem}.t2{font-size:.875rem}.t3{font-size:1rem}.t4{font-size:1.25rem}.t5{font-size:1.5rem}.t6{font-size:2rem}.tb{font-weight:700}.tc{text-align:center}
+.c1{color:var(--m-p)}.c3{color:var(--m-ok)}.cg{color:#6c757d}.cw{color:#fff}.cb{color:#000}
+.b1{background:var(--m-p)}.b3{background:var(--m-ok)}.bg{background:#f5f5f5}.bw{background:#fff}
+.r{border-radius:4px}.r2{border-radius:8px}.sh{box-shadow:0 2px 8px rgba(0,0,0,.1)}.bd{border:1px solid #ddd}
+.tdn{text-decoration:none}.cp{cursor:pointer}.o5{opacity:.5}
+.dn{display:none}.dib{display:inline-block}.rel{position:relative}
+html.dark{--m-bg:#1a1a1a;--m-fg:#f5f5f5;--m-p:#5c9eff}
+html.dark body{background:#1a1a1a;color:#f5f5f5}
+html.dark .bg{background:#2a2a2a}
+html.dark .bw{background:#222}
+@media(max-width:768px){.sm\:fc{flex-direction:column}}
+</style>
+</head>
+<body class="p3">
+
+<header class="xw3 mxa f fb fi py3">
+<a href="./" class="tdn">
+<h1 class="t5 c1 tb">Michael Callaghan</h1>
+</a>
+</header>
+
+<main class="xw3 mxa f fc fi fj py4">
+<section class="bw r2 sh p4 tc xw3">
+<div class="c3">
+<svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="2" class="mxa"><circle cx="32" cy="32" r="30"/><path d="M22 32l6 6 14-14"/></svg>
+</div>
+<h2 class="t5 tb py3">Order Confirmed!</h2>
+<p class="cg">Thank you for your purchase. A confirmation email has been sent.</p>
+<p class="py3">Order #: <span class="tb" data-m-bind="orderNumber"></span></p>
+<div class="f fc g3 fi py3">
+<a href="./" class="b1 cw p2 px3 r tdn dib">Continue Shopping</a>
+</div>
+</section>
+</main>
+
+<footer class="xw3 mxa py4 tc cg t2">
+<p>&copy; 2026 Michael Callaghan Books</p>
+<p class="t1 o5">Built 2026-02-19</p>
+</footer>
+
+<script type="application/llasm+json" id="manifest">
+{"v":1,"r":{"s":{"orderNumber":""}},"persist":{"orderNumber":"session"},"l":{"en":{}}}
+</script>
+<script type="module">
+import{l}from"../../llasm.js?v=dbg001";
+const orderNum=new URLSearchParams(location.search).get('order');
+if(orderNum){l.u({orderNumber:orderNum});}
+</script>
+</body>
+</html>

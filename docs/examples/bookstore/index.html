@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Browse books by Michael Callaghan - software development, AI, and communication">
+<meta name="theme-color" content="#0066ff">
+<title>Michael Callaghan Books</title>
+<script>try{var d=localStorage.getItem('llasm-dark');if(d==='true'||(d===null&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark');}catch(e){}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--m-p:#0066ff;--m-s:#6c757d;--m-ok:#28a745;--m-err:#dc3545}
+body{margin:0;font-family:system-ui,sans-serif;background:var(--m-bg,#fff);color:var(--m-fg,#212529)}
+.f{display:flex}.fc{flex-direction:column}.fi{align-items:center}.fj{justify-content:center}.fb{justify-content:space-between}.fg{flex-grow:1}
+.g{display:grid}.gc3{grid-template-columns:repeat(3,1fr)}
+.g1{gap:.25rem}.g2{gap:.5rem}.g3{gap:1rem}.g4{gap:1.5rem}
+.p2{padding:.5rem}.p3{padding:1rem}.p4{padding:1.5rem}.px3{padding-inline:1rem}.py2{padding-block:.5rem}.py3{padding-block:1rem}.py4{padding-block:1.5rem}
+.mxa{margin-inline:auto}.xw4{max-width:1000px}
+.t1{font-size:.75rem}.t2{font-size:.875rem}.t3{font-size:1rem}.t4{font-size:1.25rem}.t5{font-size:1.5rem}.t6{font-size:2rem}.tb{font-weight:700}.tc{text-align:center}
+.c1{color:var(--m-p)}.cg{color:#6c757d}.cw{color:#fff}.cb{color:#000}
+.b1{background:var(--m-p)}.b2{background:var(--m-s)}.bg{background:#f5f5f5}.bw{background:#fff}
+.r{border-radius:4px}.r2{border-radius:8px}.rf{border-radius:9999px}.sh{box-shadow:0 2px 8px rgba(0,0,0,.1)}.bd{border:1px solid #ddd}
+.tdn{text-decoration:none}.cp{cursor:pointer}.o5{opacity:.5}
+.dn{display:none}.rel{position:relative}.abs{position:absolute}
+.wf{width:100%}
+.badge{background:var(--m-p);color:#fff;font-size:.7rem;padding:2px 6px;border-radius:9999px;min-width:18px;text-align:center}
+.book-cover{height:200px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.875rem;text-align:center;padding:1rem;border-radius:8px 8px 0 0}
+.book-cover.ai{background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%)}
+.book-cover.comm{background:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)}
+.book-cover.career{background:linear-gradient(135deg,#43e97b 0%,#38f9d7 100%)}
+.book-cover.tech{background:linear-gradient(135deg,#fa709a 0%,#fee140 100%)}
+.price-original{text-decoration:line-through;color:#999;font-size:.875rem}
+html.dark{--m-bg:#1a1a1a;--m-fg:#f5f5f5;--m-p:#5c9eff}
+html.dark body{background:#1a1a1a;color:#f5f5f5}
+html.dark .bg{background:#2a2a2a}
+html.dark .bw{background:#1a1a1a}
+html.dark .cb{color:#f5f5f5}
+@media(max-width:768px){.sm\:fc{flex-direction:column}.sm\:gc1{grid-template-columns:1fr}.sm\:dn{display:none}}
+</style>
+</head>
+<body class="p3">
+
+<header class="xw4 mxa f fb fi py3">
+<a href="./" class="tdn">
+<h1 class="t5 c1 tb">Michael Callaghan</h1>
+</a>
+<a href="checkout.html" class="f fi g2 tdn cb" aria-label="View cart">
+<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+<span class="badge" data-m-bind="cart.length">0</span>
+</a>
+</header>
+
+<main class="xw4 mxa f fc g4 py3">
+<section class="f fb fi sm:fc g3">
+<div>
+<h2 class="t6 tb">Books</h2>
+<p class="cg">Software development, AI, and workplace communication</p>
+</div>
+<button data-m-enhance="darkmode" class="p2 px3 bg r f fi g2 cp" aria-label="Toggle dark mode">
+<svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+</button>
+</section>
+
+<section class="g gc3 g4 sm:gc1">
+<article class="bw r2 sh f fc">
+<div class="book-cover ai">P-AI-R Programming</div>
+<div class="p3 f fc g2 fg">
+<h3 class="t4 tb">P-AI-R Programming</h3>
+<p class="cg t2">How AI Tools Like GitHub Copilot and ChatGPT Can Radically Transform Your Development Workflow</p>
+<p class="t2 cg">Michael Callaghan</p>
+<div class="f fi g2">
+<span class="c1 tb t4">$7.99</span>
+<span class="price-original">$19.99</span>
+</div>
+<button data-m-on="click:addItem" data-id="pair" data-name="P-AI-R Programming" data-price="7.99" class="b1 cw p2 px3 r wf cp t3">Add to Cart</button>
+</div>
+</article>
+
+<article class="bw r2 sh f fc">
+<div class="book-cover comm">Don't Say That at Work!</div>
+<div class="p3 f fc g2 fg">
+<h3 class="t4 tb">Don't Say That at Work!</h3>
+<p class="cg t2">Lessons Learned from a Lifetime of Mistakes</p>
+<p class="t2 cg">Michael Callaghan</p>
+<div class="f fi g2">
+<span class="c1 tb t4">$12.99</span>
+</div>
+<button data-m-on="click:addItem" data-id="dontsay" data-name="Don't Say That at Work!" data-price="12.99" class="b1 cw p2 px3 r wf cp t3">Add to Cart</button>
+</div>
+</article>
+
+<article class="bw r2 sh f fc">
+<div class="book-cover tech">Capacitor in Action</div>
+<div class="p3 f fc g2 fg">
+<h3 class="t4 tb">Capacitor in Action</h3>
+<p class="cg t2">Build Cross-Platform Mobile Apps with Web Technologies</p>
+<p class="t2 cg">Michael Callaghan</p>
+<div class="f fi g2">
+<span class="c1 tb t4">$29.99</span>
+</div>
+<button data-m-on="click:addItem" data-id="capacitor" data-name="Capacitor in Action" data-price="29.99" class="b1 cw p2 px3 r wf cp t3">Add to Cart</button>
+</div>
+</article>
+
+<article class="bw r2 sh f fc">
+<div class="book-cover career">The Developer's Guide to Career Growth</div>
+<div class="p3 f fc g2 fg">
+<h3 class="t4 tb">The Developer's Guide to Career Growth</h3>
+<p class="cg t2">Navigate Your Path from Junior to Senior Engineer</p>
+<p class="t2 cg">Michael Callaghan</p>
+<div class="f fi g2">
+<span class="c1 tb t4">$14.99</span>
+</div>
+<button data-m-on="click:addItem" data-id="career" data-name="The Developer's Guide to Career Growth" data-price="14.99" class="b1 cw p2 px3 r wf cp t3">Add to Cart</button>
+</div>
+</article>
+
+<article class="bw r2 sh f fc">
+<div class="book-cover">Angular Essentials</div>
+<div class="p3 f fc g2 fg">
+<h3 class="t4 tb">Angular Essentials</h3>
+<p class="cg t2">Modern Web Development with Angular and TypeScript</p>
+<p class="t2 cg">Michael Callaghan</p>
+<div class="f fi g2">
+<span class="c1 tb t4">$24.99</span>
+</div>
+<button data-m-on="click:addItem" data-id="angular" data-name="Angular Essentials" data-price="24.99" class="b1 cw p2 px3 r wf cp t3">Add to Cart</button>
+</div>
+</article>
+
+<article class="bw r2 sh f fc">
+<div class="book-cover comm">Effective Tech Communication</div>
+<div class="p3 f fc g2 fg">
+<h3 class="t4 tb">Effective Tech Communication</h3>
+<p class="cg t2">Writing, Speaking, and Collaborating in Software Teams</p>
+<p class="t2 cg">Michael Callaghan</p>
+<div class="f fi g2">
+<span class="c1 tb t4">$11.99</span>
+</div>
+<button data-m-on="click:addItem" data-id="comm" data-name="Effective Tech Communication" data-price="11.99" class="b1 cw p2 px3 r wf cp t3">Add to Cart</button>
+</div>
+</article>
+</section>
+</main>
+
+<footer class="xw4 mxa py4 tc cg t2">
+<p>&copy; 2026 Michael Callaghan Books</p>
+<p class="t1 o5">Built 2026-02-19</p>
+</footer>
+
+<script type="application/llasm+json" id="manifest">
+{"v":1,"r":{"s":{"cart":[]}},"persist":{"cart":"local"},"l":{"en":{}}}
+</script>
+<script type="module">
+import{l}from"../../llasm.js?v=dbg002";
+l.h({
+addItem:(e,s,L,el)=>{
+const item={id:el.dataset.id,name:el.dataset.name,price:parseFloat(el.dataset.price),qty:1};
+const existing=s.cart.find(c=>c.id===item.id);
+if(existing){l.u({cart:s.cart.map(c=>c.id===item.id?{...c,qty:c.qty+1}:c)});}
+else{l.u({cart:[...s.cart,item]});}
+L.t('Added to cart','ok');
+}
+});
+</script>
+</body>
+</html>
