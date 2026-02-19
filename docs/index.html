@@ -15,7 +15,7 @@
     :root{--m-p:#0066ff;--m-s:#6c757d;--m-bg:#fff;--m-fg:#212529;font-family:system-ui,sans-serif;line-height:1.5}
     body{background:var(--m-bg);color:var(--m-fg)}
     .f{display:flex}.fc{flex-direction:column}.fw{flex-wrap:wrap}.fi{align-items:center}.fj{justify-content:center}.fb{justify-content:space-between}
-    .g{display:grid}.gc2{grid-template-columns:repeat(2,1fr)}.gc3{grid-template-columns:repeat(3,1fr)}
+    .g{display:grid;align-items:stretch}.gc2{grid-template-columns:repeat(2,1fr)}.gc3{grid-template-columns:repeat(3,1fr)}
     .g1{gap:.25rem}.g2{gap:.5rem}.g3{gap:1rem}
     .p2{padding:.5rem}.p3{padding:1rem}.p4{padding:1.5rem}
     .px2{padding-inline:.5rem}.px3{padding-inline:1rem}.px4{padding-inline:1.5rem}
@@ -227,27 +227,27 @@
       <p class="tc cg py2">Click to see working demos built with LLasM</p>
       
       <div class="g gc3 g3 py3 sm:gc1">
-        <a href="examples/todo-app.html" class="bg r2 sh p3 f fc g2 tdn cb">
+        <a href="examples/todo-app.html" class="bg r2 sh p3 tdn cb">
           <div class="t4 tb c1">Todo App</div>
           <p class="cg t2">Persistent todos with localStorage</p>
         </a>
-        <a href="examples/features-demo.html" class="bg r2 sh p3 f fc g2 tdn cb">
+        <a href="examples/features-demo.html" class="bg r2 sh p3 tdn cb">
           <div class="t4 tb c1">Features Demo</div>
           <p class="cg t2">All v2.0 features in one page</p>
         </a>
-        <a href="examples/contact-form.html" class="bg r2 sh p3 f fc g2 tdn cb">
+        <a href="examples/contact-form.html" class="bg r2 sh p3 tdn cb">
           <div class="t4 tb c1">Contact Form</div>
           <p class="cg t2">Form with validation</p>
         </a>
-        <a href="examples/landing-page.html" class="bg r2 sh p3 f fc g2 tdn cb">
+        <a href="examples/landing-page.html" class="bg r2 sh p3 tdn cb">
           <div class="t4 tb c1">Landing Page</div>
           <p class="cg t2">Marketing page layout</p>
         </a>
-        <a href="examples/minimal-card.html" class="bg r2 sh p3 f fc g2 tdn cb">
+        <a href="examples/minimal-card.html" class="bg r2 sh p3 tdn cb">
           <div class="t4 tb c1">Minimal Card</div>
           <p class="cg t2">Utility classes demo</p>
         </a>
-        <div class="bg r2 sh p3 f fc g2 cb">
+        <div class="bg r2 sh p3 f fc fb cb">
           <a href="examples/recipes/" class="tdn cb">
             <div class="t4 tb c1">Recipes</div>
             <p class="cg t2">List page with detail view</p>
@@ -257,7 +257,7 @@
             <p class="py1">"Build me a recipe app with a list page and detail page. Include 5 sample recipes with name, cook time, and difficulty."</p>
           </details>
         </div>
-        <div class="bg r2 sh p3 f fc g2 cb">
+        <div class="bg r2 sh p3 f fc fb cb">
           <a href="examples/bookstore/" class="tdn cb">
             <div class="t4 tb c1">Bookstore</div>
             <p class="cg t2">Multi-page app with cart and checkout</p>
@@ -339,7 +339,7 @@
 
   <!-- Handlers -->
   <script type="module">
-    import{l}from"./llasm.js?v=p2k7m4r9";
+    import{l}from"./llasm.js?v=j5w2n8c3";
     l.h({
       inc:(e,s,L)=>L.u({count:s.count+1}),
       dec:(e,s,L)=>L.u({count:Math.max(0,s.count-1)})
