@@ -93,8 +93,8 @@
 ### Tier 5: Server-Side Skills ✅ COMPLETE
 | # | Feature | Status | Notes |
 |---|---------|--------|-------|
-| 21 | SSR support | ✅ | `SKILL-SSR.md` - file-based routing, state injection |
-| 22 | REST API support | ✅ | `SKILL-API.md` - native Node.js http module |
+| 21 | SSR support | 🚧 | `_drafts/SKILL-SSR.md` - file-based routing, state injection (archived) |
+| 22 | REST API support | 🚧 | `_drafts/SKILL-API.md` - native Node.js http module (archived) |
 | 23 | ESM package support | ✅ | Recommended packages (better-sqlite3, zod, etc.) |
 
 ### Tier 6: Future Consideration
@@ -114,7 +114,7 @@
 
 Added full-stack capabilities with two new skills:
 
-REST API (`SKILL-API.md`):
+REST API (`_drafts/SKILL-API.md` - archived):
 - ✅ Native Node.js http module (no Express/Fastify)
 - ✅ Single-file `server.js` output
 - ✅ Route pattern matching with params
@@ -122,7 +122,7 @@ REST API (`SKILL-API.md`):
 - ✅ File-based JSON persistence examples
 - ✅ Recommended ESM packages (better-sqlite3, zod, jose, etc.)
 
-SSR (`SKILL-SSR.md`):
+SSR (`_drafts/SKILL-SSR.md` - archived):
 - ✅ File-based routing (each HTML file = route)
 - ✅ Selective SSR (only pages with handlers get state injection)
 - ✅ Mixed page types (static, static+client, SSR, SSR+hydration)
@@ -130,8 +130,8 @@ SSR (`SKILL-SSR.md`):
 - ✅ SEO meta tag injection patterns
 
 Documentation:
-- ✅ `reference/api-patterns.md` - detailed API patterns
-- ✅ `reference/ssr-patterns.md` - detailed SSR patterns
+- ✅ `references/api-patterns.md` - detailed API patterns
+- ✅ `references/ssr-patterns.md` - detailed SSR patterns
 - ✅ Updated `AGENTS.md` with all three skills
 - ✅ Updated `README.md` with server-side capabilities
 - ✅ Added server section to docs site
@@ -178,10 +178,10 @@ Features implemented:
 Documentation updated:
 - ✅ README.md
 - ✅ SKILL.md
-- ✅ reference/runtime-api.md
-- ✅ reference/utility-classes.md
-- ✅ reference/enhancement-rules.md
-- ✅ reference/manifest-schema.md
+- ✅ references/runtime-api.md
+- ✅ references/utility-classes.md
+- ✅ references/enhancement-rules.md
+- ✅ references/manifest-schema.md
 
 Examples updated:
 - ✅ features-demo.html (new - showcases all v1.2 features)

@@ -320,10 +320,10 @@ NOT for separate views (shop vs checkout vs confirmation).
 | File | Purpose |
 |------|---------|
 | `SKILL.md` | Frontend generation (primary) |
-| `SKILL-API.md` | REST API generation |
-| `SKILL-SSR.md` | Server-side rendering |
 | `llasm.js` | Runtime |
-| `reference/` | Detailed specs |
+| `references/` | Detailed specs |
+| `assets/` | Runtime and templates |
+| `_drafts/` | Archived skills (API, SSR) |
 
 ## Performance Rules
 

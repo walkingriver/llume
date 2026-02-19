@@ -275,12 +275,12 @@ Terse, token-efficient styling built into the runtime:
 
 ```
 llasm/
-├── SKILL.md           # Frontend skill (agent reads this)
-├── SKILL-API.md       # REST API skill
-├── SKILL-SSR.md       # SSR skill
-├── llasm.js           # Frontend runtime (~8KB gzipped)
+├── SKILL.md           # Main skill (agent reads this)
+├── llasm.js           # Frontend runtime (~9KB gzipped)
 ├── AGENTS.md          # Agent discovery file
-├── reference/         # Detailed specs
+├── references/        # Detailed specs (per Anthropic skills spec)
+├── assets/            # Runtime and templates
+├── _drafts/           # Archived skills (API, SSR - coming soon)
 │   ├── manifest-schema.md
 │   ├── enhancement-rules.md
 │   ├── runtime-api.md
@@ -304,9 +304,9 @@ llasm/
 
 ## Server-Side Skills
 
-LLasM includes two server-side skills for full-stack development:
+LLasM includes two server-side skills for full-stack development (coming soon):
 
-### REST API (SKILL-API.md)
+### REST API (archived in `_drafts/`)
 
 Generate zero-dependency REST APIs using native Node.js:
 
@@ -327,7 +327,7 @@ createServer(async (req, res) => {
 
 Run: `node server.js`
 
-### SSR (SKILL-SSR.md)
+### SSR (archived in `_drafts/`)
 
 Server-render LLasM pages with dynamic state injection:
 
