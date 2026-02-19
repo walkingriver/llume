@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "sirv docs --port 8080 --dev",
+    "deploy": "echo 'GitHub Pages auto-deploys on push to main. Check status at: https://github.com/walkingriver/llasm/actions'",
     "test": "vitest run",
     "test:watch": "vitest"
   },
