@@ -63,12 +63,12 @@
   <header class="f fb fi px3 py2 stk t0 l0 r0 z3 bw sh">
     <a href="#" class="t5 tb c1 tdn">⚡ LLasM</a>
     <nav class="f g3 fi fw">
-      <a href="#features" class="cg sm:dn tdn">Features</a>
-      <a href="#how" class="cg sm:dn tdn">How It Works</a>
-      <a href="#examples" class="cg sm:dn tdn">Examples</a>
+      <a href="#features" class="cg sm:dn tdn" data-m-tx="nav_features">Features</a>
+      <a href="#how" class="cg sm:dn tdn" data-m-tx="nav_how">How It Works</a>
+      <a href="#examples" class="cg sm:dn tdn" data-m-tx="nav_examples">Examples</a>
       <a href="blog.html" class="cg tdn">Blog</a>
       <a href="https://github.com/walkingriver/llasm" class="cg tdn">GitHub</a>
-      <button data-m-enhance="darkmode secondary" class="px2 py1 r t2">Theme</button>
+      <button data-m-enhance="darkmode secondary" class="px2 py1 r t2" data-m-tx="nav_theme">Theme</button>
       <select data-m-on="change:setLocale" class="px2 py1 r t2 bg" aria-label="Language">
         <option value="en">EN</option>
         <option value="es">ES</option>
@@ -264,29 +264,29 @@
       
       <div class="g gc3 g3 py3 sm:gc1">
         <a href="examples/todo-app.html" class="bg r2 sh p3 tdn cb">
-          <div class="t4 tb c1">Todo App</div>
-          <p class="cg t2">Persistent todos with localStorage</p>
+          <div class="t4 tb c1" data-m-tx="ex_todo_title">Todo App</div>
+          <p class="cg t2" data-m-tx="ex_todo_desc">Persistent todos with localStorage</p>
         </a>
         <a href="examples/features-demo.html" class="bg r2 sh p3 tdn cb">
-          <div class="t4 tb c1">Features Demo</div>
-          <p class="cg t2">All v2.0 features in one page</p>
+          <div class="t4 tb c1" data-m-tx="ex_features_title">Features Demo</div>
+          <p class="cg t2" data-m-tx="ex_features_desc">All v2.0 features in one page</p>
         </a>
         <a href="examples/contact-form.html" class="bg r2 sh p3 tdn cb">
-          <div class="t4 tb c1">Contact Form</div>
-          <p class="cg t2">Form with validation</p>
+          <div class="t4 tb c1" data-m-tx="ex_contact_title">Contact Form</div>
+          <p class="cg t2" data-m-tx="ex_contact_desc">Form with validation</p>
         </a>
         <a href="examples/landing-page.html" class="bg r2 sh p3 tdn cb">
-          <div class="t4 tb c1">Landing Page</div>
-          <p class="cg t2">Marketing page layout</p>
+          <div class="t4 tb c1" data-m-tx="ex_landing_title">Landing Page</div>
+          <p class="cg t2" data-m-tx="ex_landing_desc">Marketing page layout</p>
         </a>
         <a href="examples/minimal-card.html" class="bg r2 sh p3 tdn cb">
-          <div class="t4 tb c1">Minimal Card</div>
-          <p class="cg t2">Utility classes demo</p>
+          <div class="t4 tb c1" data-m-tx="ex_minimal_title">Minimal Card</div>
+          <p class="cg t2" data-m-tx="ex_minimal_desc">Utility classes demo</p>
         </a>
         <div class="bg r2 sh p3 f fc fb cb">
           <a href="examples/recipes/" class="tdn cb">
-            <div class="t4 tb c1">Recipes</div>
-            <p class="cg t2">List page with detail view</p>
+            <div class="t4 tb c1" data-m-tx="ex_recipes_title">Recipes</div>
+            <p class="cg t2" data-m-tx="ex_recipes_desc">List page with detail view</p>
           </a>
           <details class="t1 o5">
             <summary class="cp ell">"Build me a recipe app with a list page and detail page..."</summary>
@@ -295,8 +295,8 @@
         </div>
         <div class="bg r2 sh p3 f fc fb cb">
           <a href="examples/bookstore/" class="tdn cb">
-            <div class="t4 tb c1">Bookstore</div>
-            <p class="cg t2">Multi-page app with cart and checkout</p>
+            <div class="t4 tb c1" data-m-tx="ex_bookstore_title">Bookstore</div>
+            <p class="cg t2" data-m-tx="ex_bookstore_desc">Multi-page app with cart and checkout</p>
           </a>
           <details class="t1 o5">
             <summary class="cp ell">"Build me a simple bookstore page with a grid of book cards..."</summary>
@@ -377,7 +377,7 @@
 
   <!-- Handlers -->
   <script type="module">
-    import{l}from"./llasm.js?v=p4k8v2n6";
+    import{l}from"./llasm.js?v=r7t3x5m9";
     l.h({
       inc:(e,s,L)=>L.u({count:s.count+1}),
       dec:(e,s,L)=>L.u({count:Math.max(0,s.count-1)}),
